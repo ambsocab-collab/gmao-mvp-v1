@@ -72,6 +72,13 @@ workflow_status:
     command: "test-design"
     note: "Testability assessment before gate check"
 
+  "ci":
+    status: ".github/workflows/test.yml"
+    description: "CI/CD pipeline setup"
+    agent: "tea"
+    command: "ci"
+    note: "Pipeline configured with parallel sharding and burn-in"
+
   "validate-architecture":
     status: "optional"
     description: "Validate architecture documentation"
