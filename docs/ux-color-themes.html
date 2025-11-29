@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMAO Industrial - Visualizador de Temas UX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Theme 1: Industrial Confiable */
+            --theme1-primary: #2563eb;
+            --theme1-primary-hover: #1d4ed8;
+            --theme1-secondary: #64748b;
+            --theme1-success: #16a34a;
+            --theme1-warning: #eab308;
+            --theme1-error: #dc2626;
+            --theme1-background: #ffffff;
+            --theme1-surface: #f8fafc;
+            --theme1-text: #0f172a;
+            --theme1-text-secondary: #475569;
+            --theme1-border: #e2e8f0;
+
+            /* Theme 2: Dark Mode Industrial */
+            --theme2-primary: #3b82f6;
+            --theme2-primary-hover: #60a5fa;
+            --theme2-secondary: #9ca3af;
+            --theme2-success: #22c55e;
+            --theme2-warning: #fbbf24;
+            --theme2-error: #ef4444;
+            --theme2-background: #0f172a;
+            --theme2-surface: #1e293b;
+            --theme2-text: #f1f5f9;
+            --theme2-text-secondary: #cbd5e1;
+            --theme2-border: #334155;
+
+            /* Theme 3: High Contrast Safety */
+            --theme3-primary: #1e40af;
+            --theme3-primary-hover: #1e3a8a;
+            --theme3-secondary: #374151;
+            --theme3-success: #059669;
+            --theme3-warning: #d97706;
+            --theme3-error: #b91c1c;
+            --theme3-background: #f9fafb;
+            --theme3-surface: #ffffff;
+            --theme3-text: #111827;
+            --theme3-text-secondary: #6b7280;
+            --theme3-border: #d1d5db;
+
+            /* Common styles */
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --radius: 0.5rem;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        body {
+            padding: 20px;
+            background: #f3f4f6;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .theme-controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .theme-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .theme-btn:hover {
+            background: #d1d5db;
+        }
+
+        .theme-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .theme-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-header {
+            margin-bottom: 24px;
+        }
+
+        .theme-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .theme-description {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Component Styles */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .color-swatch {
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            padding: 8px;
+            position: relative;
+        }
+
+        .color-label {
+            margin-top: 4px;
+            font-size: 10px;
+        }
+
+        .components-showcase {
+            margin-top: 24px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 48px;
+            min-width: 120px;
+        }
+
+        .form-section {
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius);
+            font-size: 14px;
+            min-height: 48px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--current-primary, #3b82f6);
+        }
+
+        .card {
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius);
+            padding: 16px;
+            background: white;
+            margin-bottom: 16px;
+        }
+
+        .card-header {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* Theme Variations */
+        .theme-1 {
+            --current-primary: var(--theme1-primary);
+            --current-primary-hover: var(--theme1-primary-hover);
+            --current-secondary: var(--theme1-secondary);
+            --current-success: var(--theme1-success);
+            --current-warning: var(--theme1-warning);
+            --current-error: var(--theme1-error);
+            --current-background: var(--theme1-background);
+            --current-surface: var(--theme1-surface);
+            --current-text: var(--theme1-text);
+            --current-text-secondary: var(--theme1-text-secondary);
+            --current-border: var(--theme1-border);
+        }
+
+        .theme-2 {
+            --current-primary: var(--theme2-primary);
+            --current-primary-hover: var(--theme2-primary-hover);
+            --current-secondary: var(--theme2-secondary);
+            --current-success: var(--theme2-success);
+            --current-warning: var(--theme2-warning);
+            --current-error: var(--theme2-error);
+            --current-background: var(--theme2-background);
+            --current-surface: var(--theme2-surface);
+            --current-text: var(--theme2-text);
+            --current-text-secondary: var(--theme2-text-secondary);
+            --current-border: var(--theme2-border);
+        }
+
+        .theme-3 {
+            --current-primary: var(--theme3-primary);
+            --current-primary-hover: var(--theme3-primary-hover);
+            --current-secondary: var(--theme3-secondary);
+            --current-success: var(--theme3-success);
+            --current-warning: var(--theme3-warning);
+            --current-error: var(--theme3-error);
+            --current-background: var(--theme3-background);
+            --current-surface: var(--theme3-surface);
+            --current-text: var(--theme3-text);
+            --current-text-secondary: var(--theme3-text-secondary);
+            --current-border: var(--theme3-border);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .themes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .mobile-preview {
+            display: none;
+            margin-top: 24px;
+        }
+
+        .mobile-frame {
+            width: 375px;
+            height: 667px;
+            border: 12px solid #1f2937;
+            border-radius: 36px;
+            overflow: hidden;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .mobile-header {
+            background: var(--current-primary, #3b82f6);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .mobile-nav {
+            display: flex;
+            justify-content: space-around;
+            background: var(--current-surface, #f8fafc);
+            border-top: 1px solid var(--current-border, #e2e8f0);
+            padding: 12px;
+        }
+
+        .nav-item {
+            text-align: center;
+            color: var(--current-secondary, #64748b);
+            font-size: 12px;
+        }
+
+        .nav-item.active {
+            color: var(--current-primary, #3b82f6);
+        }
+
+        .mobile-content {
+            padding: 16px;
+            background: var(--current-background, #ffffff);
+            min-height: 400px;
+        }
+
+        .show-mobile .mobile-preview {
+            display: block;
+        }
+
+        .show-mobile .themes-grid {
+            display: none;
+        }
+
+        .toggle-view {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .toggle-btn {
+            padding: 8px 16px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: var(--radius);
+            cursor: pointer;
+            margin: 0 4px;
+        }
+
+        .toggle-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏭 GMAO Industrial - Visualizador de Temas UX</h1>
+            <p>Explora diferentes opciones visuales para tu sistema de mantenimiento industrial</p>
+        </div>
+
+        <div class="theme-controls">
+            <button class="theme-btn active" onclick="showTheme(1)">Tema 1: Industrial Confiable</button>
+            <button class="theme-btn" onclick="showTheme(2)">Tema 2: Dark Mode Industrial</button>
+            <button class="theme-btn" onclick="showTheme(3)">Tema 3: High Contrast Safety</button>
+        </div>
+
+        <div class="toggle-view">
+            <button class="toggle-btn active" onclick="toggleView('desktop')">🖥️ Desktop</button>
+            <button class="toggle-btn" onclick="toggleView('mobile')">📱 Mobile</button>
+        </div>
+
+        <div class="themes-grid" id="themesGrid">
+            <!-- Theme 1: Industrial Confiable -->
+            <div class="theme-card theme-1" id="theme1">
+                <div class="theme-header">
+                    <h2 class="theme-title">Tema 1: Industrial Confiable</h2>
+                    <p class="theme-description">Diseño limpio y profesional que inspira confianza y robustez para entornos industriales</p>
+                </div>
+
+                <div class="section-title">🎨 Paleta de Colores</div>
+                <div class="color-palette">
+                    <div class="color-swatch" style="background: var(--theme1-primary); color: white;">
+                        Primary
+                        <span class="color-label">#2563eb</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme1-secondary); color: white;">
+                        Secondary
+                        <span class="color-label">#64748b</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme1-success); color: white;">
+                        Success
+                        <span class="color-label">#16a34a</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme1-warning); color: white;">
+                        Warning
+                        <span class="color-label">#eab308</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme1-error); color: white;">
+                        Error
+                        <span class="color-label">#dc2626</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme1-surface); color: var(--theme1-text); border: 1px solid var(--theme1-border);">
+                        Surface
+                        <span class="color-label">#f8fafc</span>
+                    </div>
+                </div>
+
+                <div class="components-showcase">
+                    <div class="section-title">🔘 Botones</div>
+                    <div class="button-group">
+                        <button class="btn" style="background: var(--theme1-primary); color: white;">Acción Primaria</button>
+                        <button class="btn" style="background: var(--theme1-secondary); color: white;">Secundaria</button>
+                        <button class="btn" style="background: white; color: var(--theme1-primary); border: 1px solid var(--theme1-primary);">Outline</button>
+                    </div>
+
+                    <div class="section-title">📝 Formularios</div>
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label class="form-label">Línea de Producción</label>
+                            <input type="text" class="form-input" placeholder="Seleccionar línea..." style="background: var(--theme1-background); color: var(--theme1-text); border-color: var(--theme1-border);">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Descripción del Problema</label>
+                            <input type="text" class="form-input" placeholder="Describir síntoma..." style="background: var(--theme1-background); color: var(--theme1-text); border-color: var(--theme1-border);">
+                        </div>
+                    </div>
+
+                    <div class="section-title">🃏 Tarjetas</div>
+                    <div class="card" style="background: var(--theme1-surface); border-color: var(--theme1-border); color: var(--theme1-text);">
+                        <div class="card-header" style="color: var(--theme1-text);">Orden de Trabajo #1234</div>
+                        <div style="color: var(--theme1-text-secondary); font-size: 13px;">Reparación de Bomba Principal - Línea A</div>
+                        <div style="margin-top: 12px;">
+                            <span class="badge" style="background: var(--theme1-warning); color: white;">En Progreso</span>
+                            <span class="badge" style="background: var(--theme1-secondary); color: white;">Prioridad Media</span>
+                        </div>
+                    </div>
+
+                    <div class="card" style="background: var(--theme1-surface); border-color: var(--theme1-border); color: var(--theme1-text);">
+                        <div class="card-header" style="color: var(--theme1-text);">Notificación de Línea #567</div>
+                        <div style="color: var(--theme1-text-secondary); font-size: 13px;">Ruido Extraño en Motor - Línea B</div>
+                        <div style="margin-top: 12px;">
+                            <span class="badge" style="background: var(--theme1-error); color: white;">Crítico</span>
+                            <span class="badge" style="background: var(--theme1-secondary); color: white;">Sin Asignar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theme 2: Dark Mode Industrial -->
+            <div class="theme-card theme-2" id="theme2" style="display: none;">
+                <div class="theme-header">
+                    <h2 class="theme-title" style="color: var(--theme2-text);">Tema 2: Dark Mode Industrial</h2>
+                    <p class="theme-description" style="color: var(--theme2-text-secondary);">Modo oscuro optimizado para entornos de planta con iluminación variable</p>
+                </div>
+
+                <div class="section-title" style="color: var(--theme2-text);">🎨 Paleta de Colores</div>
+                <div class="color-palette">
+                    <div class="color-swatch" style="background: var(--theme2-primary); color: white;">
+                        Primary
+                        <span class="color-label">#3b82f6</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme2-secondary); color: white;">
+                        Secondary
+                        <span class="color-label">#9ca3af</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme2-success); color: white;">
+                        Success
+                        <span class="color-label">#22c55e</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme2-warning); color: white;">
+                        Warning
+                        <span class="color-label">#fbbf24</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme2-error); color: white;">
+                        Error
+                        <span class="color-label">#ef4444</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme2-surface); color: var(--theme2-text); border: 1px solid var(--theme2-border);">
+                        Surface
+                        <span class="color-label">#1e293b</span>
+                    </div>
+                </div>
+
+                <div class="components-showcase">
+                    <div class="section-title" style="color: var(--theme2-text);">🔘 Botones</div>
+                    <div class="button-group">
+                        <button class="btn" style="background: var(--theme2-primary); color: white;">Acción Primaria</button>
+                        <button class="btn" style="background: var(--theme2-secondary); color: white;">Secundaria</button>
+                        <button class="btn" style="background: var(--theme2-surface); color: var(--theme2-primary); border: 1px solid var(--theme2-primary);">Outline</button>
+                    </div>
+
+                    <div class="section-title" style="color: var(--theme2-text);">📝 Formularios</div>
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label class="form-label" style="color: var(--theme2-text);">Línea de Producción</label>
+                            <input type="text" class="form-input" placeholder="Seleccionar línea..." style="background: var(--theme2-surface); color: var(--theme2-text); border-color: var(--theme2-border);">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" style="color: var(--theme2-text);">Descripción del Problema</label>
+                            <input type="text" class="form-input" placeholder="Describir síntoma..." style="background: var(--theme2-surface); color: var(--theme2-text); border-color: var(--theme2-border);">
+                        </div>
+                    </div>
+
+                    <div class="section-title" style="color: var(--theme2-text);">🃏 Tarjetas</div>
+                    <div class="card" style="background: var(--theme2-surface); border-color: var(--theme2-border); color: var(--theme2-text);">
+                        <div class="card-header" style="color: var(--theme2-text);">Orden de Trabajo #1234</div>
+                        <div style="color: var(--theme2-text-secondary); font-size: 13px;">Reparación de Bomba Principal - Línea A</div>
+                        <div style="margin-top: 12px;">
+                            <span class="badge" style="background: var(--theme2-warning); color: var(--theme2-background);">En Progreso</span>
+                            <span class="badge" style="background: var(--theme2-secondary); color: white;">Prioridad Media</span>
+                        </div>
+                    </div>
+
+                    <div class="card" style="background: var(--theme2-surface); border-color: var(--theme2-border); color: var(--theme2-text);">
+                        <div class="card-header" style="color: var(--theme2-text);">Notificación de Línea #567</div>
+                        <div style="color: var(--theme2-text-secondary); font-size: 13px;">Ruido Extraño en Motor - Línea B</div>
+                        <div style="margin-top: 12px;">
+                            <span class="badge" style="background: var(--theme2-error); color: white;">Crítico</span>
+                            <span class="badge" style="background: var(--theme2-secondary); color: white;">Sin Asignar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theme 3: High Contrast Safety -->
+            <div class="theme-card theme-3" id="theme3" style="display: none;">
+                <div class="theme-header">
+                    <h2 class="theme-title" style="color: var(--theme3-text);">Tema 3: High Contrast Safety</h2>
+                    <p class="theme-description" style="color: var(--theme3-text-secondary);">Alto contraste máximo para legibilidad en entornos industriales difíciles</p>
+                </div>
+
+                <div class="section-title" style="color: var(--theme3-text);">🎨 Paleta de Colores</div>
+                <div class="color-palette">
+                    <div class="color-swatch" style="background: var(--theme3-primary); color: white;">
+                        Primary
+                        <span class="color-label">#1e40af</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme3-secondary); color: white;">
+                        Secondary
+                        <span class="color-label">#374151</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme3-success); color: white;">
+                        Success
+                        <span class="color-label">#059669</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme3-warning); color: white;">
+                        Warning
+                        <span class="color-label">#d97706</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme3-error); color: white;">
+                        Error
+                        <span class="color-label">#b91c1c</span>
+                    </div>
+                    <div class="color-swatch" style="background: var(--theme3-surface); color: var(--theme3-text); border: 2px solid var(--theme3-border);">
+                        Surface
+                        <span class="color-label">#ffffff</span>
+                    </div>
+                </div>
+
+                <div class="components-showcase">
+                    <div class="section-title" style="color: var(--theme3-text);">🔘 Botones</div>
+                    <div class="button-group">
+                        <button class="btn" style="background: var(--theme3-primary); color: white;">Acción Primaria</button>
+                        <button class="btn" style="background: var(--theme3-secondary); color: white;">Secundaria</button>
+                        <button class="btn" style="background: white; color: var(--theme3-primary); border: 2px solid var(--theme3-primary);">Outline</button>
+                    </div>
+
+                    <div class="section-title" style="color: var(--theme3-text);">📝 Formularios</div>
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label class="form-label" style="color: var(--theme3-text); font-weight: 600;">Línea de Producción</label>
+                            <input type="text" class="form-input" placeholder="Seleccionar línea..." style="background: var(--theme3-surface); color: var(--theme3-text); border: 2px solid var(--theme3-border); font-weight: 500;">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" style="color: var(--theme3-text); font-weight: 600;">Descripción del Problema</label>
+                            <input type="text" class="form-input" placeholder="Describir síntoma..." style="background: var(--theme3-surface); color: var(--theme3-text); border: 2px solid var(--theme3-border); font-weight: 500;">
+                        </div>
+                    </div>
+
+                    <div class="section-title" style="color: var(--theme3-text);">🃏 Tarjetas</div>
+                    <div class="card" style="background: var(--theme3-surface); border: 2px solid var(--theme3-border); color: var(--theme3-text);">
+                        <div class="card-header" style="color: var(--theme3-text); font-weight: 600;">Orden de Trabajo #1234</div>
+                        <div style="color: var(--theme3-text-secondary); font-size: 14px; font-weight: 500;">Reparación de Bomba Principal - Línea A</div>
+                        <div style="margin-top: 12px;">
+                            <span class="badge" style="background: var(--theme3-warning); color: white; font-weight: 600;">En Progreso</span>
+                            <span class="badge" style="background: var(--theme3-secondary); color: white; font-weight: 600;">Prioridad Media</span>
+                        </div>
+                    </div>
+
+                    <div class="card" style="background: var(--theme3-surface); border: 2px solid var(--theme3-border); color: var(--theme3-text);">
+                        <div class="card-header" style="color: var(--theme3-text); font-weight: 600;">Notificación de Línea #567</div>
+                        <div style="color: var(--theme3-text-secondary); font-size: 14px; font-weight: 500;">Ruido Extraño en Motor - Línea B</div>
+                        <div style="margin-top: 12px;">
+                            <span class="badge" style="background: var(--theme3-error); color: white; font-weight: 600;">Crítico</span>
+                            <span class="badge" style="background: var(--theme3-secondary); color: white; font-weight: 600;">Sin Asignar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Preview -->
+        <div class="mobile-preview" id="mobilePreview">
+            <div class="mobile-frame">
+                <div class="mobile-header">
+                    🏭 GMAO Industrial
+                </div>
+                <div class="mobile-content">
+                    <h3 style="margin-bottom: 16px; font-size: 18px; font-weight: 600;">Reportar Avería</h3>
+
+                    <div class="form-group">
+                        <label class="form-label">Línea</label>
+                        <select class="form-input" style="background: var(--current-surface, #f8fafc); color: var(--current-text, #0f172a); border-color: var(--current-border, #e2e8f0);">
+                            <option>Seleccionar línea...</option>
+                            <option>Línea A - Producción</option>
+                            <option>Línea B - Ensamblaje</option>
+                            <option>Línea C - Empaque</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Equipo</label>
+                        <select class="form-input" style="background: var(--current-surface, #f8fafc); color: var(--current-text, #0f172a); border-color: var(--current-border, #e2e8f0);">
+                            <option>Seleccionar equipo...</option>
+                            <option>Bomba Principal-001</option>
+                            <option>Motor Secundario-002</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Síntoma</label>
+                        <select class="form-input" style="background: var(--current-surface, #f8fafc); color: var(--current-text, #0f172a); border-color: var(--current-border, #e2e8f0);">
+                            <option>Seleccionar síntoma...</option>
+                            <option>Ruido Extraño</option>
+                            <option>Sobrecañentamiento</option>
+                            <option>Vibración Anormal</option>
+                        </select>
+                    </div>
+
+                    <button class="btn" style="width: 100%; background: var(--current-primary, #3b82f6); color: white; margin: 20px 0;">
+                        📷 Tomar Foto y Enviar
+                    </button>
+
+                    <div class="section-title">Mis Órdenes</div>
+                    <div class="card" style="background: var(--current-surface, #f8fafc); border-color: var(--current-border, #e2e8f0); color: var(--current-text, #0f172a);">
+                        <div class="card-header" style="color: var(--current-text, #0f172a);">OT-1234</div>
+                        <div style="color: var(--current-text-secondary, #475569); font-size: 13px;">Reparación Bomba - Línea A</div>
+                        <div style="margin-top: 8px;">
+                            <span class="badge" style="background: var(--current-warning, #eab308); color: white;">En Progreso</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-nav">
+                    <div class="nav-item active">
+                        <div>🏠</div>
+                        <div>Inicio</div>
+                    </div>
+                    <div class="nav-item">
+                        <div>📋</div>
+                        <div>Órdenes</div>
+                    </div>
+                    <div class="nav-item">
+                        <div>🔍</div>
+                        <div>Buscar</div>
+                    </div>
+                    <div class="nav-item">
+                        <div>⚙️</div>
+                        <div>Config</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTheme(themeNumber) {
+            // Hide all themes
+            document.getElementById('theme1').style.display = 'none';
+            document.getElementById('theme2').style.display = 'none';
+            document.getElementById('theme3').style.display = 'none';
+
+            // Show selected theme
+            document.getElementById('theme' + themeNumber).style.display = 'block';
+
+            // Update active button
+            const buttons = document.querySelectorAll('.theme-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            buttons[themeNumber - 1].classList.add('active');
+
+            // Update mobile preview theme class
+            const mobilePreview = document.getElementById('mobilePreview');
+            mobilePreview.className = 'mobile-preview theme-' + themeNumber;
+        }
+
+        function toggleView(view) {
+            const container = document.querySelector('.container');
+            const toggleBtns = document.querySelectorAll('.toggle-btn');
+
+            toggleBtns.forEach(btn => btn.classList.remove('active'));
+
+            if (view === 'mobile') {
+                container.classList.add('show-mobile');
+                toggleBtns[1].classList.add('active');
+            } else {
+                container.classList.remove('show-mobile');
+                toggleBtns[0].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

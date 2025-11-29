@@ -1,0 +1,93 @@
+# Workflow Status
+
+# This tracks progress through BMM methodology Analysis, Planning, and Solutioning phases.
+# Implementation phase is tracked separately in sprint-status.yaml
+
+# STATUS DEFINITIONS:
+# ==================
+# Initial Status (before completion):
+#   - required: Must be completed to progress
+#   - optional: Can be completed but not required
+#   - recommended: Strongly suggested but not required
+#   - conditional: Required only if certain conditions met (e.g., if_has_ui)
+#
+# Completion Status:
+#   - {file-path}: File created/found (e.g., "docs/product-brief.md")
+#   - skipped: Optional/conditional workflow that was skipped
+
+generated: "2025-11-28T17:55:00.000Z"
+project: "gmao-mvp-v1"
+project_type: "GMAO Industrial Maintenance System"
+selected_track: "bmad-method"
+field_type: "brownfield"
+workflow_path: ".bmad/bmm/workflows/workflow-status/paths/method-brownfield.yaml"
+workflow_status:
+  "document-project":
+    status: "required"
+    description: "Comprehensive project documentation"
+    agent: "analyst"
+    command: "document-project"
+    note: "Understand existing codebase before planning"
+    purpose: "Prerequisite for brownfield without docs"
+
+  "prd":
+    status: "prd.md"
+    description: "PRD focused on new features/changes"
+    agent: "pm"
+    command: "prd"
+    note: "Must consider existing system constraints"
+    purpose: "Found existing comprehensive PRD"
+
+  "validate-prd":
+    status: "optional"
+    description: "Validate PRD completeness and quality"
+    agent: "pm"
+    command: "validate-prd"
+
+  "create-design":
+    status: "required"
+    description: "UX Design specification"
+    agent: "ux-designer"
+    command: "create-design"
+    note: "Conditional: if_has_ui"
+
+  "create-architecture":
+    status: "docs/architecture.md"
+    description: "Integration architecture - solution design for THIS project"
+    agent: "architect"
+    command: "create-architecture"
+    note: "HIGHLY RECOMMENDED: Distills massive brownfield context into focused solution design"
+
+  "create-epics-and-stories":
+    status: "required"
+    description: "Break down PRD into implementable epics and stories"
+    agent: "pm"
+    command: "create-epics-and-stories"
+    note: "Required: Break down PRD into implementable epics and stories with full context"
+
+  "test-design":
+    status: "recommended"
+    description: "System-level testability review"
+    agent: "tea"
+    command: "test-design"
+    note: "Testability assessment before gate check"
+
+  "validate-architecture":
+    status: "optional"
+    description: "Validate architecture documentation"
+    agent: "architect"
+    command: "validate-architecture"
+
+  "implementation-readiness":
+    status: "required"
+    description: "Validate PRD + UX + Architecture + Epics cohesion"
+    agent: "architect"
+    command: "implementation-readiness"
+    note: "Validates all artifacts before implementation"
+
+  "sprint-planning":
+    status: "required"
+    description: "Creates sprint plan with stories"
+    agent: "sm"
+    command: "sprint-planning"
+    note: "Implementation phase - creates sprint plan"

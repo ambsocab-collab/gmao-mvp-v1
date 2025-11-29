@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMAO Industrial - Mockups de Direcciones de Diseño</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Industrial Theme Variables */
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #64748b;
+            --success: #16a34a;
+            --warning: #eab308;
+            --error: #dc2626;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --radius: 8px;
+
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: #f3f4f6;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #374151;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #f9fafb;
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .direction-container {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: var(--shadow-lg);
+            min-height: 800px;
+        }
+
+        .direction-header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        .direction-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .direction-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .direction-badges {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .badge.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .badge.success {
+            background: var(--success);
+            color: white;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .section {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        /* Canvas Styles */
+        .canvas-container {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .canvas-header {
+            background: var(--primary);
+            color: white;
+            padding: 16px 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .canvas-filters {
+            display: flex;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 13px;
+            background: white;
+        }
+
+        .kanban-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        .kanban-column {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .column-header {
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .column-count {
+            background: var(--text-secondary);
+            color: white;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 11px;
+        }
+
+        .kanban-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px;
+            margin-bottom: 12px;
+            cursor: move;
+            transition: all 0.2s;
+        }
+
+        .kanban-card:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-1px);
+        }
+
+        .card-id {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .card-assignee {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .card-priority {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .priority-high {
+            background: var(--error);
+            color: white;
+        }
+
+        .priority-medium {
+            background: var(--warning);
+            color: white;
+        }
+
+        .priority-low {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Mobile Styles */
+        .mobile-screen {
+            width: 375px;
+            height: 667px;
+            background: white;
+            border-radius: 24px;
+            border: 8px solid #1f2937;
+            overflow: hidden;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-header {
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .mobile-content {
+            padding: 16px;
+            height: calc(100% - 132px);
+            overflow-y: auto;
+            background: #f9fafb;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .quick-action-btn {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-action-btn:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .quick-action-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .quick-action-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .order-list {
+            background: white;
+            border-radius: var(--radius);
+            padding: 16px;
+        }
+
+        .order-item {
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            cursor: pointer;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .order-status {
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .order-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .order-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .mobile-nav {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            border-top: 1px solid var(--border);
+            padding: 12px;
+            height: 68px;
+        }
+
+        .nav-item {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        /* Desktop Layout Variations */
+        .sidebar-layout {
+            display: flex;
+            height: 500px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-item {
+            padding: 10px 16px;
+            margin-bottom: 4px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background: white;
+        }
+
+        .sidebar-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background: white;
+        }
+
+        .top-nav-layout {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .top-nav {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-menu-item {
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .nav-menu-item:hover {
+            background: white;
+        }
+
+        .nav-menu-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kanban-board {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mobile-screen {
+                width: 100%;
+                max-width: 375px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏭 GMAO Industrial - Mockups de Diseño</h1>
+            <p>Explora diferentes approaches de UX para tu sistema de mantenimiento industrial</p>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showDirection(1)">Dirección 1: Dashboard Denso</button>
+            <button class="nav-btn" onclick="showDirection(2)">Dirección 2: Canvas Minimalista</button>
+            <button class="nav-btn" onclick="showDirection(3)">Dirección 3: Sidebar Tradicional</button>
+            <button class="nav-btn" onclick="showDirection(4)">Dirección 4: Mobile-First</button>
+            <button class="nav-btn" onclick="showDirection(5)">Dirección 5: Data-Heavy</button>
+            <button class="nav-btn" onclick="showDirection(6)">Dirección 6: Card-Based</button>
+        </div>
+
+        <!-- Direction 1: Dashboard Denso -->
+        <div class="direction-container" id="direction1">
+            <div class="direction-header">
+                <h2 class="direction-title">Dirección 1: Dashboard Denso & Eficiente</h2>
+                <p class="direction-subtitle">Maximiza información visible - ideal para supervisores que necesitan panorama completo</p>
+                <div class="direction-badges">
+                    <span class="badge primary">Alta Densidad</span>
+                    <span class="badge">Para Supervisores</span>
+                    <span class="badge success">Desktop Optimizado</span>
+                    <span class="badge">Canvas Principal</span>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="section">
+                    <h3 class="section-title">📊 Canvas Kanban - Vista Principal</h3>
+                    <div class="canvas-container">
+                        <div class="canvas-header">
+                            <span>🏭 Canvas de Mantenimiento</span>
+                            <span>Última actualización: hace 2 min</span>
+                        </div>
+                        <div class="canvas-filters">
+                            <select class="filter-select">
+                                <option>Todas las Líneas</option>
+                                <option>Línea A - Producción</option>
+                                <option>Línea B - Ensamblaje</option>
+                            </select>
+                            <select class="filter-select">
+                                <option>Todos los Técnicos</option>
+                                <option>Carlos García (N4)</option>
+                                <option>María López (N3)</option>
+                            </select>
+                            <select class="filter-select">
+                                <option>Todas las Prioridades</option>
+                                <option>🔴 Críticas</option>
+                                <option>🟡 Medias</option>
+                            </select>
+                        </div>
+                        <div class="kanban-board">
+                            <div class="kanban-column">
+                                <div class="column-header">
+                                    📋 Notificaciones Línea
+                                    <span class="column-count">3</span>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="card-id">NL-567</div>
+                                    <div class="card-title">Ruido en Motor Principal</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee">👤 J. Martínez</div>
+                                        <div class="card-priority priority-high">🔴 Crítico</div>
+                                    </div>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="card-id">NL-568</div>
+                                    <div class="card-title">Vibración Bomba Secundaria</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee">👤 A. Rodríguez</div>
+                                        <div class="card-priority priority-medium">🟡 Media</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kanban-column">
+                                <div class="column-header">
+                                    ⏳ Pendientes
+                                    <span class="column-count">2</span>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="card-id">OT-1234</div>
+                                    <div class="card-title">Revisión Caldera IPC</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee">👤 C. García</div>
+                                        <div class="card-priority priority-high">🔴 Crítico</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kanban-column">
+                                <div class="column-header">
+                                    🔧 En Progreso
+                                    <span class="column-count">4</span>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="card-id">OT-1235</div>
+                                    <div class="card-title">Cambio Filtros Línea A</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee">👤 M. López</div>
+                                        <div class="card-priority priority-medium">🟡 Media</div>
+                                    </div>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="card-id">OT-1236</div>
+                                    <div class="card-title">Mantenimiento Preventivo</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee">👤 D. Martín</div>
+                                        <div class="card-priority priority-low">🟢 Baja</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kanban-column">
+                                <div class="column-header">
+                                    ✅ Validación
+                                    <span class="column-count">1</span>
+                                </div>
+                                <div class="kanban-card">
+                                    <div class="card-id">OT-1233</div>
+                                    <div class="card-title">Reparación Compresor</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee">👤 L. Sánchez</div>
+                                        <div class="card-priority priority-medium">🟡 Media</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">📱 Mobile - Operario Técnico</h3>
+                    <div class="mobile-screen">
+                        <div class="mobile-header">🏭 GMAO Industrial</div>
+                        <div class="mobile-content">
+                            <div class="quick-actions">
+                                <div class="quick-action-btn">
+                                    <div class="quick-action-icon">🚨</div>
+                                    <div class="quick-action-label">Reportar Avería</div>
+                                </div>
+                                <div class="quick-action-btn">
+                                    <div class="quick-action-icon">📷</div>
+                                    <div class="quick-action-label">Escanear QR</div>
+                                </div>
+                                <div class="quick-action-btn">
+                                    <div class="quick-action-icon">⏰</div>
+                                    <div class="quick-action-label">Registrar Tiempo</div>
+                                </div>
+                                <div class="quick-action-btn">
+                                    <div class="quick-action-icon">📋</div>
+                                    <div class="quick-action-label">Ver Mis Órdenes</div>
+                                </div>
+                            </div>
+
+                            <div class="order-list">
+                                <h4 style="margin-bottom: 12px; font-size: 14px; font-weight: 600;">Mis Órdenes Activas</h4>
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <span class="order-id">OT-1235</span>
+                                        <span class="order-status" style="background: var(--warning); color: white;">En Progreso</span>
+                                    </div>
+                                    <div class="order-description">Cambio Filtros Línea A - Preventivo Mensual</div>
+                                    <div class="order-meta">
+                                        <span>⏰ 2h 30m</span>
+                                        <span>📍 Línea A</span>
+                                        <span>👤 Asignado a mí</span>
+                                    </div>
+                                </div>
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <span class="order-id">OT-1237</span>
+                                        <span class="order-status" style="background: var(--secondary); color: white;">Pendiente</span>
+                                    </div>
+                                    <div class="order-description">Inspección Seguridad Eléctrica - Nivel 3</div>
+                                    <div class="order-meta">
+                                        <span>⏰ Estimado: 1h</span>
+                                        <span>📍 Planta Completa</span>
+                                        <span>👤 Asignado a mí</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-nav">
+                            <div class="nav-item active">
+                                <div class="nav-item-icon">🏠</div>
+                                <div>Inicio</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">📋</div>
+                                <div>Órdenes</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">🔍</div>
+                                <div>Buscar</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">⚙️</div>
+                                <div>Config</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Direction 2: Canvas Minimalista -->
+        <div class="direction-container" id="direction2" style="display: none;">
+            <div class="direction-header">
+                <h2 class="direction-title">Dirección 2: Canvas Minimalista & Enfocado</h2>
+                <p class="direction-subtitle">Diseño limpio que prioriza las acciones más importantes - reduce sobrecarga visual</p>
+                <div class="direction-badges">
+                    <span class="badge primary">Minimalista</span>
+                    <span class="badge">Espacioso</span>
+                    <span class="badge success">Reducido Estrés</span>
+                    <span class="badge">Focus Mode</span>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="section">
+                    <h3 class="section-title">🎯 Canvas Simplificado - Sólo lo Esencial</h3>
+                    <div class="canvas-container">
+                        <div class="canvas-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <span>📋 Canvas de Mantenimiento</span>
+                            <span>4 órdenes activas</span>
+                        </div>
+                        <div class="kanban-board" style="grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                            <div class="kanban-column" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+                                <div class="column-header">
+                                    🔄 Por Asignar
+                                    <span class="column-count" style="background: #667eea;">2</span>
+                                </div>
+                                <div class="kanban-card" style="border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="card-id" style="color: #667eea; font-weight: 600;">NL-567</div>
+                                    <div class="card-title" style="font-size: 13px;">Ruido Motor Principal</div>
+                                    <div class="card-meta">
+                                        <div class="card-priority priority-high">🔴 Urgente</div>
+                                    </div>
+                                </div>
+                                <div class="kanban-card" style="border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="card-id" style="color: #667eea; font-weight: 600;">OT-1238</div>
+                                    <div class="card-title" style="font-size: 13px;">Inspección Mensual</div>
+                                    <div class="card-meta">
+                                        <div class="card-priority priority-medium">🟡 Programado</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kanban-column" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                                <div class="column-header">
+                                    ⚡ En Ejecución
+                                    <span class="column-count" style="background: #f093fb;">3</span>
+                                </div>
+                                <div class="kanban-card" style="border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="card-id" style="color: #f093fb; font-weight: 600;">OT-1235</div>
+                                    <div class="card-title" style="font-size: 13px;">Cambio Filtros</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee" style="background: #f093fb; color: white; padding: 2px 8px; border-radius: 12px;">👤 M. López</div>
+                                    </div>
+                                </div>
+                                <div class="kanban-card" style="border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="card-id" style="color: #f093fb; font-weight: 600;">OT-1236</div>
+                                    <div class="card-title" style="font-size: 13px;">Mantenimiento HVAC</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee" style="background: #f093fb; color: white; padding: 2px 8px; border-radius: 12px;">👤 D. Martín</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kanban-column" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                                <div class="column-header">
+                                    ✅ Por Validar
+                                    <span class="column-count" style="background: #ffecd2;">1</span>
+                                </div>
+                                <div class="kanban-card" style="border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="card-id" style="color: #ffecd2; font-weight: 600;">OT-1233</div>
+                                    <div class="card-title" style="font-size: 13px;">Reparación Compresor</div>
+                                    <div class="card-meta">
+                                        <div class="card-assignee" style="background: #ffecd2; color: #333; padding: 2px 8px; border-radius: 12px;">👤 L. Sánchez</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">📱 Mobile - Flujo Simplificado</h3>
+                    <div class="mobile-screen">
+                        <div class="mobile-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🏭 GMAO Industrial</div>
+                        <div class="mobile-content" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+                            <div style="text-align: center; margin-bottom: 24px;">
+                                <h4 style="margin-bottom: 8px;">¿Qué necesitas hacer?</h4>
+                                <p style="color: var(--text-secondary); font-size: 13px;">Una acción a la vez</p>
+                            </div>
+
+                            <div style="display: grid; gap: 16px;">
+                                <div class="quick-action-btn" style="padding: 24px; background: white; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+                                    <div class="quick-action-icon" style="font-size: 32px; color: #667eea;">🚨</div>
+                                    <div class="quick-action-label" style="font-size: 16px; font-weight: 600;">Reportar Problema</div>
+                                </div>
+
+                                <div style="background: white; border-radius: 16px; padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <h5 style="margin-bottom: 12px; color: #333;">Tu Orden Actual</h5>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <span style="font-weight: 600; color: #667eea;">OT-1235</span>
+                                        <span style="background: #f093fb; color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px;">En Progreso</span>
+                                    </div>
+                                    <p style="color: #666; font-size: 13px; margin-bottom: 12px;">Cambio Filtros Línea A</p>
+                                    <button style="width: 100%; padding: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-weight: 600;">
+                                        Continuar Trabajo →
+                                    </button>
+                                </div>
+
+                                <div class="quick-action-btn" style="padding: 20px; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="quick-action-icon" style="font-size: 24px; color: #f093fb;">📋</div>
+                                    <div class="quick-action-label" style="font-size: 14px;">Ver Todas las Órdenes</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-nav">
+                            <div class="nav-item">
+                                <div class="nav-item-icon">🏠</div>
+                                <div>Inicio</div>
+                            </div>
+                            <div class="nav-item active">
+                                <div class="nav-item-icon">📋</div>
+                                <div>Trabajo</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">👤</div>
+                                <div>Perfil</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Direction 3: Sidebar Tradicional -->
+        <div class="direction-container" id="direction3" style="display: none;">
+            <div class="direction-header">
+                <h2 class="direction-title">Dirección 3: Sidebar Tradicional & Structured</h2>
+                <p class="direction-subtitle">Layout familiar enterprise con navegación lateral clara - ideal para administradores</p>
+                <div class="direction-badges">
+                    <span class="badge primary">Enterprise</span>
+                    <span class="badge">Structured</span>
+                    <span class="badge success">Familiar UX</span>
+                    <span class="badge">Admin-Focused</span>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="section">
+                    <h3 class="section-title">🏢 Desktop - Layout Enterprise</h3>
+                    <div class="sidebar-layout">
+                        <div class="sidebar">
+                            <div style="margin-bottom: 24px; text-align: center;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">🏭</div>
+                                <div style="font-weight: 600; color: var(--text);">GMAO System</div>
+                            </div>
+                            <ul class="sidebar-nav">
+                                <li class="sidebar-item active">📊 Dashboard</li>
+                                <li class="sidebar-item">🔧 Mantenimiento</li>
+                                <li class="sidebar-item">📋 Órdenes Trabajo</li>
+                                <li class="sidebar-item">🏭 Activos</li>
+                                <li class="sidebar-item">📦 Inventario</li>
+                                <li class="sidebar-item">👥 Técnicos</li>
+                                <li class="sidebar-item">📊 Reportes</li>
+                                <li class="sidebar-item">⚙️ Configuración</li>
+                            </ul>
+                        </div>
+                        <div class="main-content">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                                <h4 style="font-size: 18px; font-weight: 600;">Dashboard de Mantenimiento</h4>
+                                <div style="display: flex; gap: 12px;">
+                                    <button style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 6px;">+ Nueva Orden</button>
+                                </div>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+                                <div style="background: var(--surface); padding: 16px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 24px; font-weight: 700; color: var(--primary);">12</div>
+                                    <div style="font-size: 12px; color: var(--text-secondary);">Órdenes Activas</div>
+                                </div>
+                                <div style="background: var(--surface); padding: 16px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 24px; font-weight: 700; color: var(--warning);">3</div>
+                                    <div style="font-size: 12px; color: var(--text-secondary);">Críticas</div>
+                                </div>
+                                <div style="background: var(--surface); padding: 16px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 24px; font-weight: 700; color: var(--success);">8</div>
+                                    <div style="font-size: 12px; color: var(--text-secondary);">Completadas Hoy</div>
+                                </div>
+                                <div style="background: var(--surface); padding: 16px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 24px; font-weight: 700; color: var(--error);">2</div>
+                                    <div style="font-size: 12px; color: var(--text-secondary);">Vencidas</div>
+                                </div>
+                            </div>
+
+                            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                                <h5 style="margin-bottom: 16px; font-weight: 600;">Órdenes Recientes</h5>
+                                <div style="display: grid; gap: 12px;">
+                                    <div style="display: grid; grid-template-columns: 100px 1fr 120px 100px; gap: 16px; align-items: center; padding: 12px; background: var(--surface); border-radius: 6px;">
+                                        <div style="font-weight: 600; color: var(--primary);">OT-1235</div>
+                                        <div>Cambio Filtros Línea A</div>
+                                        <div><span style="background: var(--warning); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px;">En Progreso</span></div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">M. López</div>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 100px 1fr 120px 100px; gap: 16px; align-items: center; padding: 12px; background: var(--surface); border-radius: 6px;">
+                                        <div style="font-weight: 600; color: var(--primary);">OT-1234</div>
+                                        <div>Revisión Caldera IPC</div>
+                                        <div><span style="background: var(--error); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px;">Crítico</span></div>
+                                        <div style="font-size: 12px; color: var(--text-secondary);">C. García</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">📱 Mobile - Navegación Collapse</h3>
+                    <div class="mobile-screen">
+                        <div class="mobile-header">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>☰</span>
+                                <span>GMAO System</span>
+                                <span>🔔</span>
+                            </div>
+                        </div>
+                        <div class="mobile-content">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                                <h4 style="margin-bottom: 8px;">¡Bienvenido!</h4>
+                                <p style="font-size: 13px; opacity: 0.9;">12 órdenes activas • 3 críticas</p>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px;">
+                                <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center;">
+                                    <div style="font-size: 20px; margin-bottom: 8px;">📊</div>
+                                    <div style="font-size: 12px; font-weight: 500;">Dashboard</div>
+                                </div>
+                                <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center;">
+                                    <div style="font-size: 20px; margin-bottom: 8px;">🔧</div>
+                                    <div style="font-size: 12px; font-weight: 500;">Mantenimiento</div>
+                                </div>
+                                <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center;">
+                                    <div style="font-size: 20px; margin-bottom: 8px;">📋</div>
+                                    <div style="font-size: 12px; font-weight: 500;">Órdenes</div>
+                                </div>
+                                <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center;">
+                                    <div style="font-size: 20px; margin-bottom: 8px;">🏭</div>
+                                    <div style="font-size: 12px; font-weight: 500;">Activos</div>
+                                </div>
+                            </div>
+
+                            <div style="background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+                                <h5 style="margin-bottom: 12px; font-weight: 600;">Acciones Rápidas</h5>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <button style="padding: 12px; background: var(--primary); color: white; border: none; border-radius: 6px; text-align: left;">+ Crear Nueva Orden</button>
+                                    <button style="padding: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 6px; text-align: left;">📊 Ver Reportes</button>
+                                    <button style="padding: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 6px; text-align: left;">⚙️ Configuración</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-nav">
+                            <div class="nav-item active">
+                                <div class="nav-item-icon">🏠</div>
+                                <div>Inicio</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">📋</div>
+                                <div>Órdenes</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">👤</div>
+                                <div>Perfil</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Direction 4: Mobile-First -->
+        <div class="direction-container" id="direction4" style="display: none;">
+            <div class="direction-header">
+                <h2 class="direction-title">Dirección 4: Mobile-First Adaptive</h2>
+                <p class="direction-subtitle">Diseño pensado desde móvil hacia desktop - óptimo para operadores en campo</p>
+                <div class="direction-badges">
+                    <span class="badge primary">Mobile-First</span>
+                    <span class="badge">Field Optimized</span>
+                    <span class="badge success">Touch-First</span>
+                    <span class="badge">Progressive</span>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="section">
+                    <h3 class="section-title">📱 Mobile - Experiencia Principal</h3>
+                    <div class="mobile-screen">
+                        <div class="mobile-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <div style="font-size: 12px; opacity: 0.9;">Operario</div>
+                                    <div style="font-weight: 600;">J. Martínez (N3)</div>
+                                </div>
+                                <div style="font-size: 20px;">👤</div>
+                            </div>
+                        </div>
+                        <div class="mobile-content" style="padding: 12px;">
+                            <!-- Quick Status Cards -->
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px;">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 18px; font-weight: 700;">2</div>
+                                    <div style="font-size: 10px;">Mis Activas</div>
+                                </div>
+                                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 18px; font-weight: 700;">1</div>
+                                    <div style="font-size: 10px;">Por Validar</div>
+                                </div>
+                            </div>
+
+                            <!-- Primary Action -->
+                            <button style="width: 100%; padding: 16px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                🚨 Reportar Avería
+                            </button>
+
+                            <!-- Tab Navigation -->
+                            <div style="display: flex; background: white; border-radius: 8px; margin-bottom: 16px; overflow: hidden;">
+                                <div style="flex: 1; padding: 12px; text-align: center; background: var(--primary); color: white; font-weight: 500;">Activas</div>
+                                <div style="flex: 1; padding: 12px; text-align: center; color: var(--text-secondary);">Completadas</div>
+                            </div>
+
+                            <!-- Order Cards -->
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="background: white; border-radius: 8px; padding: 16px; border-left: 4px solid var(--warning);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text);">OT-1235</div>
+                                            <div style="font-size: 12px; color: var(--text-secondary);">Cambio Filtros</div>
+                                        </div>
+                                        <div style="background: var(--warning); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px;">En Progreso</div>
+                                    </div>
+                                    <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 12px;">⏰ 2h 30m registrados • 📍 Línea A</div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button style="flex: 1; padding: 8px; background: var(--primary); color: white; border: none; border-radius: 6px; font-size: 12px;">Continuar</button>
+                                        <button style="flex: 1; padding: 8px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 6px; font-size: 12px;">Pausar</button>
+                                    </div>
+                                </div>
+
+                                <div style="background: white; border-radius: 8px; padding: 16px; border-left: 4px solid var(--success);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text);">OT-1236</div>
+                                            <div style="font-size: 12px; color: var(--text-secondary);">Inspección HVAC</div>
+                                        </div>
+                                        <div style="background: var(--success); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px;">Completado</div>
+                                    </div>
+                                    <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 12px;">⏱️ 1h 15m total • ✅ Finalizado</div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button style="flex: 1; padding: 8px; background: var(--success); color: white; border: none; border-radius: 6px; font-size: 12px;">Ver Detalles</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-nav">
+                            <div class="nav-item active">
+                                <div class="nav-item-icon">📋</div>
+                                <div>Mis Órdenes</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">🚨</div>
+                                <div>Reportar</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">📷</div>
+                                <div>Escanear</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">⚙️</div>
+                                <div>Config</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">🖥️ Desktop - Mobile Pattern Adaptado</h3>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 12px; padding: 24px; min-height: 500px;">
+                        <!-- Mobile-style header on desktop -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 16px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 8px;">
+                            <div>
+                                <div style="font-size: 14px; opacity: 0.9;">Administrador</div>
+                                <div style="font-weight: 600; font-size: 18px;">Panel de Control</div>
+                            </div>
+                            <div style="display: flex; gap: 16px; align-items: center;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 24px; font-weight: 700;">15</div>
+                                    <div style="font-size: 12px; opacity: 0.9;">Órdenes Activas</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 24px; font-weight: 700;">3</div>
+                                    <div style="font-size: 12px; opacity: 0.9;">Críticas</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile-style card grid -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                            <button style="padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🚨</div>
+                                <div style="font-weight: 600;">Nueva Avería</div>
+                            </button>
+                            <button style="padding: 20px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
+                                <div style="font-weight: 600;">Crear Orden</div>
+                            </button>
+                            <button style="padding: 20px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border: none; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">👥</div>
+                                <div style="font-weight: 600;">Asignar Técnico</div>
+                            </button>
+                            <button style="padding: 20px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; border: none; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">📊</div>
+                                <div style="font-weight: 600;">Ver Reportes</div>
+                            </button>
+                        </div>
+
+                        <!-- Mobile-style list view -->
+                        <div style="background: var(--surface); border-radius: 8px; padding: 16px;">
+                            <h5 style="margin-bottom: 16px; font-weight: 600;">Actividad Reciente</h5>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="background: white; padding: 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">🚨</div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text);">NL-567 Reportada</div>
+                                            <div style="font-size: 12px; color: var(--text-secondary);">J. Martínez • Línea A</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="background: var(--error); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px;">Crítico</div>
+                                        <div style="font-size: 11px; color: var(--text-secondary);">Hace 5 min</div>
+                                    </div>
+                                </div>
+
+                                <div style="background: white; padding: 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="display: flex; align-items: center; gap: 12px;">
+                                        <div style="width: 40px; height: 40px; background: var(--success); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">✅</div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text);">OT-1233 Completada</div>
+                                            <div style="font-size: 12px; color: var(--text-secondary);">L. Sánchez • 4h 30m</div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="background: var(--success); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px;">Validado</div>
+                                        <div style="font-size: 11px; color: var(--text-secondary);">Hace 1h</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Direction 5: Data-Heavy -->
+        <div class="direction-container" id="direction5" style="display: none;">
+            <div class="direction-header">
+                <h2 class="direction-title">Dirección 5: Data-Heavy Analytics</h2>
+                <p class="direction-subtitle">Maximiza visualización de datos y métricas - perfecto para gestión basada en datos</p>
+                <div class="direction-badges">
+                    <span class="badge primary">Data-Driven</span>
+                    <span class="badge">Analytics First</span>
+                    <span class="badge success">Metrics Rich</span>
+                    <span class="badge">Manager View</span>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="section">
+                    <h3 class="section-title">📊 Dashboard Analytics Completo</h3>
+                    <div style="background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+                        <div class="canvas-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <span>📈 Analytics Dashboard</span>
+                            <span>Actualización en vivo</span>
+                        </div>
+
+                        <!-- KPIs Row -->
+                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border);">
+                            <div style="background: white; padding: 16px; text-align: center;">
+                                <div style="font-size: 24px; font-weight: 700; color: var(--error);">23</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">Total Activas</div>
+                                <div style="font-size: 10px; color: var(--success);">↑ 15% vs ayer</div>
+                            </div>
+                            <div style="background: white; padding: 16px; text-align: center;">
+                                <div style="font-size: 24px; font-weight: 700; color: var(--warning);">5</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">Críticas</div>
+                                <div style="font-size: 10px; color: var(--error);">↑ 2 vs ayer</div>
+                            </div>
+                            <div style="background: white; padding: 16px; text-align: center;">
+                                <div style="font-size: 24px; font-weight: 700; color: var(--primary);">87%</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">Cumplimiento</div>
+                                <div style="font-size: 10px; color: var(--success);">Meta 85%</div>
+                            </div>
+                            <div style="background: white; padding: 16px; text-align: center;">
+                                <div style="font-size: 24px; font-weight: 700; color: var(--success);">4.2h</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">Tiempo Promedio</div>
+                                <div style="font-size: 10px; color: var(--success);">↓ 0.5h vs mes</div>
+                            </div>
+                            <div style="background: white; padding: 16px; text-align: center;">
+                                <div style="font-size: 24px; font-weight: 700; color: var(--secondary);">98.5%</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">Disponibilidad</div>
+                                <div style="font-size: 10px; color: var(--success);">Meta 99%</div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Area -->
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1px; background: var(--border); height: 300px;">
+                            <div style="background: var(--surface); padding: 20px;">
+                                <h5 style="margin-bottom: 16px; font-weight: 600;">📈 Tendencia Semanal - Órdenes por Día</h5>
+                                <!-- Simulated Chart -->
+                                <div style="height: 200px; background: white; border-radius: 8px; display: flex; align-items: end; justify-content: space-around; padding: 16px;">
+                                    <div style="text-align: center;">
+                                        <div style="width: 30px; height: 120px; background: var(--primary); border-radius: 4px; margin-bottom: 4px;"></div>
+                                        <div style="font-size: 10px;">Lun</div>
+                                        <div style="font-size: 12px; font-weight: 600;">18</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="width: 30px; height: 140px; background: var(--primary); border-radius: 4px; margin-bottom: 4px;"></div>
+                                        <div style="font-size: 10px;">Mar</div>
+                                        <div style="font-size: 12px; font-weight: 600;">21</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="width: 30px; height: 160px; background: var(--warning); border-radius: 4px; margin-bottom: 4px;"></div>
+                                        <div style="font-size: 10px;">Mié</div>
+                                        <div style="font-size: 12px; font-weight: 600;">24</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="width: 30px; height: 130px; background: var(--primary); border-radius: 4px; margin-bottom: 4px;"></div>
+                                        <div style="font-size: 10px;">Jue</div>
+                                        <div style="font-size: 12px; font-weight: 600;">19</div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="width: 30px; height: 110px; background: var(--primary); border-radius: 4px; margin-bottom: 4px;"></div>
+                                        <div style="font-size: 10px;">Vie</div>
+                                        <div style="font-size: 12px; font-weight: 600;">16</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="background: var(--surface); padding: 20px;">
+                                <h5 style="margin-bottom: 16px; font-weight: 600;">🎯 Por Tipo</h5>
+                                <!-- Simulated Pie Chart -->
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <div style="width: 16px; height: 16px; background: var(--error); border-radius: 2px;"></div>
+                                        <div style="flex: 1; font-size: 12px;">Correctivo</div>
+                                        <div style="font-size: 12px; font-weight: 600;">45%</div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <div style="width: 16px; height: 16px; background: var(--success); border-radius: 2px;"></div>
+                                        <div style="flex: 1; font-size: 12px;">Preventivo</div>
+                                        <div style="font-size: 12px; font-weight: 600;">35%</div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <div style="width: 16px; height: 16px; background: var(--warning); border-radius: 2px;"></div>
+                                        <div style="flex: 1; font-size: 12px;">Predictivo</div>
+                                        <div style="font-size: 12px; font-weight: 600;">15%</div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <div style="width: 16px; height: 16px; background: var(--secondary); border-radius: 2px;"></div>
+                                        <div style="flex: 1; font-size: 12px;">Mejora</div>
+                                        <div style="font-size: 12px; font-weight: 600;">5%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Data Table -->
+                        <div style="background: white; padding: 20px;">
+                            <h5 style="margin-bottom: 16px; font-weight: 600;">📋 Top Técnicos - Rendimiento Semanal</h5>
+                            <div style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead style="background: var(--surface);">
+                                        <tr>
+                                            <th style="padding: 12px; text-align: left; font-size: 12px; font-weight: 600;">Técnico</th>
+                                            <th style="padding: 12px; text-align: center; font-size: 12px; font-weight: 600;">Órdenes</th>
+                                            <th style="padding: 12px; text-align: center; font-size: 12px; font-weight: 600;">Completadas</th>
+                                            <th style="padding: 12px; text-align: center; font-size: 12px; font-weight: 600;">Tiempo Prom</th>
+                                            <th style="padding: 12px; text-align: center; font-size: 12px; font-weight: 600;">Eficiencia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-top: 1px solid var(--border);">
+                                            <td style="padding: 12px; font-size: 13px;">C. García (N4)</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">12</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">11</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">3.2h</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;"><span style="background: var(--success); color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px;">92%</span></td>
+                                        </tr>
+                                        <tr style="border-top: 1px solid var(--border);">
+                                            <td style="padding: 12px; font-size: 13px;">M. López (N3)</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">10</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">9</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">4.1h</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;"><span style="background: var(--warning); color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px;">90%</span></td>
+                                        </tr>
+                                        <tr style="border-top: 1px solid var(--border);">
+                                            <td style="padding: 12px; font-size: 13px;">D. Martín (N5)</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">8</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">8</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;">2.8h</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 13px;"><span style="background: var(--success); color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px;">100%</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">📱 Mobile - Data View Optimizado</h3>
+                    <div class="mobile-screen">
+                        <div class="mobile-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; opacity: 0.9;">Analytics</div>
+                                <div style="font-weight: 600;">Panel de Datos</div>
+                            </div>
+                        </div>
+                        <div class="mobile-content" style="padding: 12px;">
+                            <!-- Compact KPIs -->
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px;">
+                                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 18px; font-weight: 700;">23</div>
+                                    <div style="font-size: 10px;">Activas</div>
+                                    <div style="font-size: 9px;">↑ 15%</div>
+                                </div>
+                                <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 12px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 18px; font-weight: 700;">87%</div>
+                                    <div style="font-size: 10px;">Cumplimiento</div>
+                                    <div style="font-size: 9px;">✓ Meta</div>
+                                </div>
+                            </div>
+
+                            <!-- Mini Chart -->
+                            <div style="background: white; border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                                <h5 style="margin-bottom: 12px; font-size: 14px; font-weight: 600;">📈 Tendencia Semanal</h5>
+                                <div style="display: flex; align-items: end; justify-content: space-around; height: 80px;">
+                                    <div style="width: 20px; height: 40px; background: var(--primary); border-radius: 2px;"></div>
+                                    <div style="width: 20px; height: 50px; background: var(--primary); border-radius: 2px;"></div>
+                                    <div style="width: 20px; height: 60px; background: var(--warning); border-radius: 2px;"></div>
+                                    <div style="width: 20px; height: 45px; background: var(--primary); border-radius: 2px;"></div>
+                                    <div style="width: 20px; height: 35px; background: var(--primary); border-radius: 2px;"></div>
+                                </div>
+                                <div style="display: flex; justify-content: space-around; margin-top: 8px;">
+                                    <div style="font-size: 10px;">L</div>
+                                    <div style="font-size: 10px;">M</div>
+                                    <div style="font-size: 10px;">X</div>
+                                    <div style="font-size: 10px;">J</div>
+                                    <div style="font-size: 10px;">V</div>
+                                </div>
+                            </div>
+
+                            <!-- Performance List -->
+                            <div style="background: white; border-radius: 8px; padding: 16px;">
+                                <h5 style="margin-bottom: 12px; font-size: 14px; font-weight: 600;">🏆 Top Rendimiento</h5>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background: var(--surface); border-radius: 6px;">
+                                        <div>
+                                            <div style="font-size: 12px; font-weight: 600;">C. García</div>
+                                            <div style="font-size: 10px; color: var(--text-secondary);">11/12 órdenes</div>
+                                        </div>
+                                        <div style="font-size: 14px; font-weight: 700; color: var(--success);">92%</div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background: var(--surface); border-radius: 6px;">
+                                        <div>
+                                            <div style="font-size: 12px; font-weight: 600;">M. López</div>
+                                            <div style="font-size: 10px; color: var(--text-secondary);">9/10 órdenes</div>
+                                        </div>
+                                        <div style="font-size: 14px; font-weight: 700; color: var(--warning);">90%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-nav">
+                            <div class="nav-item">
+                                <div class="nav-item-icon">📊</div>
+                                <div>Analytics</div>
+                            </div>
+                            <div class="nav-item active">
+                                <div class="nav-item-icon">📈</div>
+                                <div>Tendencias</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">🏆</div>
+                                <div>Ranking</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Direction 6: Card-Based -->
+        <div class="direction-container" id="direction6" style="display: none;">
+            <div class="direction-header">
+                <h2 class="direction-title">Dirección 6: Card-Based Visual</h2>
+                <p class="direction-subtitle">Todo basado en tarjetas visuales - intuitivo y escaneable para rápida comprensión</p>
+                <div class="direction-badges">
+                    <span class="badge primary">Card-First</span>
+                    <span class="badge">Visual Heavy</span>
+                    <span class="badge success">Scannable</span>
+                    <span class="badge">Intuitive</span>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="section">
+                    <h3 class="section-title">🎴 Card Dashboard - Todo en Tarjetas</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                        <!-- Status Card -->
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; padding: 20px;">
+                            <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Estado General</div>
+                            <div style="font-size: 28px; font-weight: 700; margin-bottom: 12px;">23 Activas</div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <div style="background: rgba(255,255,255,0.2); padding: 8px; border-radius: 6px; text-align: center;">
+                                    <div style="font-size: 16px; font-weight: 600;">5</div>
+                                    <div style="font-size: 10px;">Críticas</div>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.2); padding: 8px; border-radius: 6px; text-align: center;">
+                                    <div style="font-size: 16px; font-weight: 600;">18</div>
+                                    <div style="font-size: 10px;">Normales</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Card -->
+                        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 12px; padding: 20px;">
+                            <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Rendimiento Hoy</div>
+                            <div style="font-size: 28px; font-weight: 700; margin-bottom: 12px;">87%</div>
+                            <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                                <div>Meta: 85%</div>
+                                <div>✓ Cumplido</div>
+                            </div>
+                        </div>
+
+                        <!-- Team Card -->
+                        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 12px; padding: 20px;">
+                            <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Equipo Activo</div>
+                            <div style="font-size: 28px; font-weight: 700; margin-bottom: 12px;">8/10</div>
+                            <div style="display: flex; gap: 4px;">
+                                <div style="width: 24px; height: 24px; background: rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px;">C</div>
+                                <div style="width: 24px; height: 24px; background: rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px;">M</div>
+                                <div style="width: 24px; height: 24px; background: rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px;">D</div>
+                                <div style="width: 24px; height: 24px; background: rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px;">+5</div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions Card -->
+                        <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; border-radius: 12px; padding: 20px;">
+                            <div style="font-size: 14px; opacity: 0.9; margin-bottom: 12px;">Acciones Rápidas</div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <button style="padding: 12px; background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 8px; font-size: 12px;">🚨 Avería</button>
+                                <button style="padding: 12px; background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 8px; font-size: 12px;">📋 Orden</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kanban Card View -->
+                    <div style="margin-top: 24px;">
+                        <h4 style="margin-bottom: 16px; font-weight: 600;">📋 Tablero Kanban</h4>
+                        <div class="kanban-board">
+                            <div class="kanban-column" style="background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);">
+                                <div class="column-header">
+                                    🔄 Por Hacer
+                                    <span class="column-count">3</span>
+                                </div>
+                                <div class="kanban-card" style="background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="card-id" style="color: #fd79a8;">🔥 NL-567</div>
+                                    <div class="card-title">Ruido Motor Principal - Urgente</div>
+                                    <div style="display: flex; gap: 8px; margin-top: 8px;">
+                                        <span style="background: #e17055; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">🔥 Crítico</span>
+                                        <span style="background: #00b894; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">Línea A</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kanban-column" style="background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);">
+                                <div class="column-header">
+                                    ⚡ En Progreso
+                                    <span class="column-count">4</span>
+                                </div>
+                                <div class="kanban-card" style="background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="card-id" style="color: #6c5ce7;">🔧 OT-1235</div>
+                                    <div class="card-title">Cambio Filtros Preventivo</div>
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                                        <div style="background: #6c5ce7; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px;">👤 M. López</div>
+                                        <span style="background: #00cec9; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">2h 30m</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kanban-column" style="background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);">
+                                <div class="column-header">
+                                    ✅ Listo
+                                    <span class="column-count">2</span>
+                                </div>
+                                <div class="kanban-card" style="background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <div class="card-id" style="color: #00b894;">✨ OT-1233</div>
+                                    <div class="card-title">Reparación Compresor</div>
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                                        <div style="background: #00b894; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px;">👤 L. Sánchez</div>
+                                        <span style="background: #55efc4; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px;">Validado</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">📱 Mobile - Card Interface</h3>
+                    <div class="mobile-screen">
+                        <div class="mobile-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div style="text-align: center;">
+                                <div style="font-size: 12px; opacity: 0.9;">GMAO Cards</div>
+                                <div style="font-weight: 600;">Panel Visual</div>
+                            </div>
+                        </div>
+                        <div class="mobile-content" style="padding: 12px;">
+                            <!-- Status Cards Grid -->
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px;">
+                                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 16px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 20px; font-weight: 700;">23</div>
+                                    <div style="font-size: 10px;">Órdenes Activas</div>
+                                </div>
+                                <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 16px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 20px; font-weight: 700;">87%</div>
+                                    <div style="font-size: 10px;">Eficiencia</div>
+                                </div>
+                            </div>
+
+                            <!-- Action Cards -->
+                            <div style="margin-bottom: 16px;">
+                                <h5 style="margin-bottom: 8px; font-size: 14px; font-weight: 600;">Acciones Principales</h5>
+                                <div style="display: grid; gap: 8px;">
+                                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px; border-radius: 12px; display: flex; align-items: center; gap: 12px;">
+                                        <div style="font-size: 24px;">🚨</div>
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600;">Reportar Avería</div>
+                                            <div style="font-size: 11px; opacity: 0.9;">5 toques rápido</div>
+                                        </div>
+                                        <div style="font-size: 16px;">→</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order Cards -->
+                            <div>
+                                <h5 style="margin-bottom: 8px; font-size: 14px; font-weight: 600;">Mis Órdenes</h5>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="background: white; border-radius: 12px; padding: 16px; border-left: 4px solid #f093fb;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                            <div>
+                                                <div style="font-weight: 600; color: #f093fb;">🔧 OT-1235</div>
+                                                <div style="font-size: 12px; color: #666;">Cambio Filtros</div>
+                                            </div>
+                                            <div style="background: #f093fb; color: white; padding: 4px 8px; border-radius: 12px; font-size: 10px;">2h 30m</div>
+                                        </div>
+                                        <button style="width: 100%; padding: 8px; background: #f093fb; color: white; border: none; border-radius: 8px; font-size: 12px;">Continuar Trabajo</button>
+                                    </div>
+
+                                    <div style="background: white; border-radius: 12px; padding: 16px; border-left: 4px solid #00b894;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                            <div>
+                                                <div style="font-weight: 600; color: #00b894;">✅ OT-1236</div>
+                                                <div style="font-size: 12px; color: #666;">Inspección HVAC</div>
+                                            </div>
+                                            <div style="background: #00b894; color: white; padding: 4px 8px; border-radius: 12px; font-size: 10px;">Completado</div>
+                                        </div>
+                                        <button style="width: 100%; padding: 8px; background: #00b894; color: white; border: none; border-radius: 8px; font-size: 12px;">Ver Detalles</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-nav">
+                            <div class="nav-item active">
+                                <div class="nav-item-icon">🎴</div>
+                                <div>Tarjetas</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">📋</div>
+                                <div>Órdenes</div>
+                            </div>
+                            <div class="nav-item">
+                                <div class="nav-item-icon">📊</div>
+                                <div>Datos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDirection(directionNumber) {
+            // Hide all directions
+            for (let i = 1; i <= 6; i++) {
+                const direction = document.getElementById('direction' + i);
+                if (direction) {
+                    direction.style.display = 'none';
+                }
+            }
+
+            // Show selected direction
+            const selectedDirection = document.getElementById('direction' + directionNumber);
+            if (selectedDirection) {
+                selectedDirection.style.display = 'block';
+            }
+
+            // Update active button
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            buttons[directionNumber - 1].classList.add('active');
+        }
+    </script>
+</body>
+</html>
