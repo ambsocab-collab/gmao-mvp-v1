@@ -86,14 +86,14 @@ workflow_status:
     command: "validate-architecture"
 
   "implementation-readiness":
-    status: "required"
+    status: "docs/implementation-readiness-report-2025-11-29.md"
     description: "Validate PRD + UX + Architecture + Epics cohesion"
     agent: "architect"
     command: "implementation-readiness"
     note: "Validates all artifacts before implementation"
 
   "sprint-planning":
-    status: "required"
+    status: "docs/sprint-artifacts/sprint-status.yaml"
     description: "Creates sprint plan with stories"
     agent: "sm"
     command: "sprint-planning"

@@ -1,0 +1,15 @@
+.next/
+out/
+build/
+dist/
+node_modules/
+coverage/
+*.min.js
+*.bundle.js
+*.chunk.js
+public/
+playwright-report/
+test-results/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

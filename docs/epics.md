@@ -110,86 +110,6 @@ This map shows which Functional Requirements are covered by each proposed Epic.
 
 <!-- Repeat for each epic (N = 1, 2, 3...) -->
 
-## Epic 2: Asset Management Core
-
-**Goal:** Provide comprehensive management for all physical assets within the system.
-
-### Story 2.1: Multidimensional Asset Structure & CRUD
-
-As an **administrator**,
-I want **to create, read, update, and delete assets with a flexible multidimensional structure (hierarchy, typology, systems)**,
-So that **I can accurately model our plant equipment**.
-
-**Acceptance Criteria:**
-
-**Given** I am on the asset management screen,
-**When** I create a new asset,
-**Then** I can define its name, description, and link it to a parent asset (hierarchy - `parent_id` in `assets` table) (FR5).
-**And** I can assign it a typology (family) and functional systems.
-
-**When** I view an asset,
-**Then** its hierarchical path (breadcrumbs) and associated typology/systems are displayed.
-**And** CRUD operations are available for assets.
-
-**Prerequisites:** Story 1.4 (Role-Based Access Control)
-
-**Technical Notes:** Implement `assets` table with `parent_id` for adjacency list. Use recursive CTEs for hierarchy display. Implement basic forms for asset creation/editing. UX: Tree view for hierarchy, forms for details.
-
-### Story 2.2: Asset Technical Sheet & Documentation
-
-As a **technician**,
-I want **to access a detailed technical sheet and associated documentation for any asset**,
-So that **I have all necessary information for maintenance tasks**.
-
-**Acceptance Criteria:**
-
-**Given** I am viewing an asset's details,
-**When** I navigate to its technical sheet,
-**Then** I see predefined technical attributes (e.g., model, serial, manufacturer, installation date).
-**And** I can view/download attached documents (manuals, certifications, schematics) (FR6).
-
-**Prerequisites:** Story 2.1 (Multidimensional Asset Structure & CRUD)
-
-**Technical Notes:** Extend `assets` table with `jsonb` for technical attributes. Implement Supabase Storage for document uploads, linked to `assets`.
-
-### Story 2.3: Predictive Asset Search
-
-As a **user**,
-I want **to quickly find assets by typing their name, code, or tag**,
-So that **I can access their information without extensive navigation**.
-
-**Acceptance Criteria:**
-
-**Given** I am in the asset management section,
-**When** I type in the search bar,
-**Then** a list of matching assets appears dynamically based on name, code, or QR tag (FR7).
-**And** the search is fast and responsive.
-
-**Prerequisites:** Story 2.1 (Multidimensional Asset Structure & CRUD)
-
-**Technical Notes:** Implement a full-text search index on relevant asset fields (name, code, description). Utilize `TSQuery` in PostgreSQL for efficient search.
-
-### Story 2.4: Bulk Asset Data Import (Admin)
-
-As an **administrator**,
-I want **to import and update asset data in bulk using standardized files (CSV/Excel)**,
-So that **I can quickly populate and maintain the asset registry**.
-
-**Acceptance Criteria:**
-
-**Given** I am in the admin panel's data management section,
-**When** I upload a valid CSV/Excel file with asset data,
-**Then** the system processes the file and imports/updates assets (FR36).
-**And** I receive feedback on the success or failure of the import, including any errors.
-**And** the system provides a downloadable template for the import file structure.
-
-**Prerequisites:** Story 2.1 (Multidimensional Asset Structure & CRUD), Story 1.4 (Role-Based Access Control - Admin access).
-
-**Technical Notes:** Implement a backend function (Supabase Edge Function or custom API if necessary) for processing bulk uploads. Handle data validation and error reporting.
-
----
-
-
 ## Epic 1: Foundation & User Management
 
 **Goal:** Establish the core technical foundation and enable basic user authentication and management.
@@ -294,7 +214,6 @@ So that **I can ensure only qualified personnel perform specific tasks**.
 
 ---
 
-
 ## Epic 2: Asset Management Core
 
 **Goal:** Provide comprehensive management for all physical assets within the system.
@@ -373,6 +292,7 @@ So that **I can quickly populate and maintain the asset registry**.
 **Technical Notes:** Implement a backend function (Supabase Edge Function or custom API if necessary) for processing bulk uploads. Handle data validation and error reporting.
 
 ---
+
 
 ## Epic 3: Core Maintenance Flow (OT & Reactive)
 

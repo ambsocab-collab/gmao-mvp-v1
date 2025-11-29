@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { QueryProvider } from "@/providers/query-provider";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -9,8 +10,32 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
+  title: "GMAO MVP - Sistema de Mantenimiento Industrial",
+  description: "Sistema de Mantenimiento Industrial para gestión de activos y órdenes de trabajo",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "GMAO MVP",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "GMAO MVP",
+    title: "GMAO MVP - Sistema de Mantenimiento Industrial",
+    description: "Sistema de Mantenimiento Industrial para gestión de activos y órdenes de trabajo",
+  },
+  twitter: {
+    card: "summary",
+    title: "GMAO MVP",
+    description: "Sistema de Mantenimiento Industrial para gestión de activos y órdenes de trabajo",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1e40af",
 };
 
 const geistSans = Geist({
@@ -33,7 +58,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <QueryProvider>
+            {children}
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>

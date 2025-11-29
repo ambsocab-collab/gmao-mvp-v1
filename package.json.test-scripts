@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "test:epic1:p0": "playwright test --project=p0-critical-security --project=p0-critical-auth",
+    "test:epic1:p1": "playwright test --project=p1-high-priority",
+    "test:epic1:smoke": "playwright test --grep 'P0-AUTH-001|P0-AUTH-002|P0-RBAC-001'",
+    "test:epic1:security": "playwright test --grep 'AUTH|RBA'",
+    "test:epic1:all": "playwright test",
+    "test:epic1:report": "playwright show-report",
+    "test:epic1:validate-setup": "playwright test --config=tests/setup.ts --list",
+    "test:epic1:install-deps": "npm install @playwright/test playwright",
+    "test:epic1:help": "echo 'Available Epic 1 Test Commands:' && echo '  test:epic1:p0 - Run P0 critical security tests' && echo '  test:epic1:p1 - Run P1 high priority tests' && echo '  test:epic1:smoke - Run smoke tests' && echo '  test:epic1:security - Run security-focused tests' && echo '  test:epic1:all - Run all Epic 1 tests'"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "playwright": "^1.40.0"
+  }
+}

@@ -1,0 +1,99 @@
+# generated: 2025-11-29
+# project: gmao-mvp-v1
+# tracking_system: file-system
+# story_location: docs/sprint-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic exists in epic file but not contexted
+#   - contexted: Epic tech context created (required before drafting stories)
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - drafted: Story file created in stories folder
+#   - ready-for-dev: Draft approved and story context created
+#   - in-progress: Developer actively working on implementation
+#   - review: Under SM review (via code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - completed: Retrospective has been done
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epics should be 'contexted' before stories can be 'drafted'
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically drafts next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', SM reviews, then Dev moves to 'done'
+
+generated: 2025-11-29
+project: gmao-mvp-v1
+tracking_system: file-system
+story_location: docs/sprint-artifacts
+
+development_status:
+  epic-1: contexted
+  1-1-project-setup-initial-infrastructure: done
+  1-2-user-authentication-login-logout: backlog
+  1-3-user-registration-invitation-admin: backlog
+  1-4-role-based-access-control-basic: backlog
+  1-5-technical-capacity-levels-n1-n5: backlog
+  epic-1-retrospective: optional
+
+  epic-2: backlog
+  2-1-multidimensional-asset-structure-crud: backlog
+  2-2-asset-technical-sheet-documentation: backlog
+  2-3-predictive-asset-search: backlog
+  2-4-bulk-asset-data-import-admin: backlog
+  epic-2-retrospective: optional
+
+  epic-3: backlog
+  3-1-mobile-line-notification-nl-creation-operator: backlog
+  3-2-direct-work-order-ot-creation-technician-supervisor: backlog
+  3-3-line-notification-nl-to-work-order-ot-conversion: backlog
+  3-4-my-orders-view-for-technicians: backlog
+  3-5-work-order-tracking-log-diagnosis-actions-time-parts: backlog
+  3-6-work-order-log-chat-bitacora: backlog
+  3-7-work-order-closure-request-supervisor-validation: backlog
+  epic-3-retrospective: optional
+
+  epic-4: backlog
+  4-1-kanban-canvas-display-basic: backlog
+  4-2-drag-drop-work-order-assignment: backlog
+  4-3-visual-filters-for-canvas: backlog
+  4-4-blocking-statuses-notifications: backlog
+  epic-4-retrospective: optional
+
+  epic-5: backlog
+  5-1-spare-parts-catalog-crud: backlog
+  5-2-automatic-stock-deduction-on-work-order: backlog
+  5-3-low-stock-alerts: backlog
+  5-4-controlled-stock-receipt-entry-management: backlog
+  5-5-stock-regularization-manual-adjustments: backlog
+  epic-5-retrospective: optional
+
+  epic-6: backlog
+  6-1-rotable-component-substitution: backlog
+  6-2-rotable-recovery-cycle-repair-request: backlog
+  6-3-external-n5-service-assignment-tracking: backlog
+  epic-6-retrospective: optional
+
+  epic-7: backlog
+  7-1-compliance-calendar-for-critical-assets: backlog
+  7-2-non-conformity-nc-registry-classification: backlog
+  7-3-non-conformity-nc-to-work-order-ot-linkage: backlog
+  7-4-nc-closure-blocking-document-repository: backlog
+  epic-7-retrospective: optional
+
+  epic-8: backlog
+  8-1-procurement-needs-management-panel: backlog
+  8-2-purchase-order-oc-generation: backlog
+  epic-8-retrospective: optional
+
+  epic-9: backlog
+  9-1-kpi-dashboard-mttr-mtbf-availability: backlog
+  9-2-data-export-to-csv: backlog
+  9-3-tv-kiosk-mode-for-plant-displays: backlog
+  epic-9-retrospective: optional

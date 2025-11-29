@@ -1,7 +1,22 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx bmad-method@alpha install:*)"
+      "Bash(npx bmad-method@alpha install:*)",
+      "Bash(supabase start:*)",
+      "Bash(supabase db shell:*)",
+      "Bash(psql:*)",
+      "Bash(npx playwright install:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(npx next:*)",
+      "Bash(npm run build)",
+      "Bash(timeout:*)",
+      "Bash(npm install:*)",
+      "Bash(npm view:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:*)",
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(npm outdated:*)"
     ],
     "deny": [],
     "ask": []

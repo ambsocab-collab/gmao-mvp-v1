@@ -1,0 +1,110 @@
+<story-context id="{bmad_folder}/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>1</storyId>
+    <title>Project Setup & Initial Infrastructure</title>
+    <status>drafted</status>
+    <generatedAt>2025-11-29</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/1-1-project-setup-initial-infrastructure.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>developer</asA>
+    <iWant>a working Next.js project with Supabase integration and basic UI components</iWant>
+    <soThat>I can start building features immediately</soThat>
+    <tasks>- [ ] Initialize Next.js project with Supabase template (AC: 1)
+  - [ ] Run `npx create-next-app@latest . --example with-supabase` command
+  - [ ] Verify Next.js 15 and App Router setup
+  - [ ] Configure Supabase client connection
+  - [ ] Test basic Supabase integration
+
+- [ ] Install and configure core dependencies (AC: 2)
+  - [ ] Install Tailwind CSS 3.4+ and configure theme
+  - [ ] Set up Shadcn/UI components library
+  - [ ] Install Lucide React for icons
+  - [ ] Install TanStack Query v5 for server state management
+  - [ ] Install Zustand for client state management
+  - [ ] Configure all dependencies in package.json
+
+- [ ] Configure development tools (AC: 3)
+  - [ ] Set up ESLint configuration for TypeScript
+  - [ ] Configure Prettier formatting rules
+  - [ ] Add pre-commit hooks for code quality (optional)
+
+- [ ] Set up PWA capabilities (AC: 4)
+  - [ ] Install and configure next-pwa package
+  - [ ] Generate PWA manifest.json
+  - [ ] Configure service worker for static asset caching
+
+- [ ] Establish project structure (AC: 5)
+  - [ ] Create app/(auth) directory for authentication routes
+  - [ ] Create app/(dashboard) directory for protected routes
+  - [ ] Set up components/ directory structure (ui/, assets/, orders/, canvas/, shared/)
+  - [ ] Create lib/ directory for utilities and hooks
+  - [ ] Set up types/ directory for TypeScript definitions</tasks>
+  </story>
+
+  <acceptanceCriteria>1. [AC: Setup Initialization] Initialize Next.js 15 project with App Router, TypeScript 5.x, and Supabase integration using Vercel Supabase starter template
+2. [AC: Dependencies Installation] Install and configure Tailwind CSS 3.4+, Shadcn/UI (Radix UI), Lucide React, TanStack Query v5, and Zustand
+3. [AC: Code Quality Setup] Configure ESLint + Prettier for consistent code style across the project
+4. [AC: PWA Configuration] Configure `next-pwa` for Progressive Web App manifest generation
+5. [AC: Project Structure] Establish proper directory structure according to architecture specification (app/(auth), app/(dashboard), components/, lib/, types/)</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc path="docs/prd.md" title="Product Requirements Document" section="Success Criteria" snippet="Adopción del Operario: < 5 toques para reportar una avería crítica. Eficiencia de Planificación: Reducción del 50% en el tiempo de la reunión diaria de mantenimiento gracias al Canvas."/>
+      <doc path="docs/prd.md" title="Product Requirements Document" section="Non-Functional Requirements - Platform & Usability" snippet="Online First: Arquitectura dependiente de conexión. TWA/PWA: La aplicación debe ser instalable en dispositivos Android industriales como Trusted Web Activity. Diseño Industrial: Alto contraste, botones grandes (>44px) para uso con guantes."/>
+      <doc path="docs/epics.md" title="Epic Breakdown Document" section="Epic 1: Foundation & User Management" snippet="Goal: Establish the core technical foundation and enable basic user authentication and management. Story 1.1: Project Setup & Initial Infrastructure - As a developer, I want a working Next.js project with Supabase integration and basic UI components."/>
+      <doc path="docs/architecture.md" title="Architecture Decision Document" section="Project Initialization Strategy" snippet="We will utilize the official Vercel Supabase starter to establish a solid, best-practice foundation."/>
+      <doc path="docs/architecture.md" title="Architecture Decision Document" section="Core Technology Stack & Versions" snippet="Next.js 15 (App Router), TypeScript 5.x (Strict mode), Tailwind CSS 3.4+, Shadcn/UI (Radix UI primitives), TanStack Query v5, Zustand, Supabase platform."/>
+      <doc path="docs/ux-design-specification.md" title="UX Design Specification" section="Design System Foundation" snippet="Industrial UI System based on Tailwind CSS + Shadcn/UI, prioritizing legibility over decorative aesthetics. Large buttons (>44px), clear typography, immediate visual feedback."/>
+    </docs>
+    <code>
+      <code path="package.json" kind="config" symbol="dependencies" lines="10-26" reason="Core dependencies already installed - includes Next.js, Supabase, Radix UI, Lucide React, Tailwind CSS"/>
+      <code path="package.json" kind="config" symbol="devDependencies" lines="27-42" reason="Development tools installed - includes TypeScript, ESLint, Tailwind CSS, Playwright"/>
+      <code path="app/layout.tsx" kind="app-router" symbol="root-layout" reason="Next.js App Router root layout structure already exists"/>
+      <code path="app/auth/login/page.tsx" kind="auth-page" symbol="login-component" reason="Authentication pages structure already in place using auth route group"/>
+      <code path="app/protected/page.tsx" kind="protected-route" symbol="dashboard-layout" reason="Protected routes structure established - should be moved to (dashboard) route group"/>
+      <code path="components/ui/button.tsx" kind="shadcn-component" symbol="Button" reason="Shadcn/UI components already configured - provides industrial-grade button component"/>
+      <code path="components/ui/card.tsx" kind="shadcn-component" symbol="Card" reason="Shadcn/UI card components available for content organization"/>
+    </code>
+    <dependencies>
+      <ecosystem name="nextjs" packages="next@^19.0.0, react@^19.0.0, react-dom@^19.0.0, typescript@^5"/>
+      <ecosystem name="styling" packages="tailwindcss@^3.4.1, tailwindcss-animate@^1.0.7, clsx@^2.1.1, tailwind-merge@^3.3.0, class-variance-authority@^0.7.1"/>
+      <ecosystem name="components" packages="@radix-ui/react-checkbox@^1.3.1, @radix-ui/react-dropdown-menu@^2.1.14, @radix-ui/react-label@^2.1.6, @radix-ui/react-slot@^1.2.2, lucide-react@^0.511.0"/>
+      <ecosystem name="backend" packages="@supabase/ssr@latest, @supabase/supabase-js@^2.86.0"/>
+      <ecosystem name="tools" packages="playwright@^1.57.0, @playwright/test@^1.57.0, eslint@^9, eslint-config-next@^15.3.1"/>
+      <ecosystem name="missing" packages="@tanstack/react-query@^5.0.0, zustand@^4.0.0, react-hook-form@^7.0.0, zod@^3.0.0, next-pwa@^6.0.0"/>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+      <constraint name="Boring Technology Stack" description="Use proven, stable technologies: Next.js 15 + Supabase + Tailwind CSS"/>
+      <constraint name="Database-Level Security" description="Implement RLS (Row Level Security) patterns from the start"/>
+      <constraint name="Online-First with PWA" description="Configure next-pwa for offline shell capability, no complex sync queue"/>
+      <constraint name="Industrial UI Requirements" description="Large buttons (>44px), high contrast, glove-friendly interfaces"/>
+      <constraint name="Project Structure" description="Use route groups: app/(auth) and app/(dashboard)"/>
+      <constraint name="TypeScript Strict Mode" description="Enable strict TypeScript, no 'any' types allowed"/>
+      <constraint name="Naming Conventions" description="kebab-case files, PascalCase components, snake_case database tables"/>
+      <constraint name="Component Library" description="Follow Shadcn/UI patterns with custom industrial styling"/>
+      <constraint name="State Management" description="TanStack Query for server state, Zustand for UI state only"/>
+    </constraints>
+  <interfaces>
+      <interface name="Supabase Client" kind="service" signature="createClientComponentClient&lt;Database&gt;()" path="lib/supabase/client.ts"/>
+      <interface name="Supabase Server" kind="service" signature="createServerComponentClient&lt;Database&gt;()" path="lib/supabase/server.ts"/>
+      <interface name="Database Types" kind="generated" signature="interface Database { Tables: {...} }" path="types/database.ts"/>
+      <interface name="Auth Middleware" kind="middleware" signature="middleware(request: NextRequest): NextResponse" path="middleware.ts"/>
+    </interfaces>
+  <tests>
+    <standards>E2E testing using Playwright with support for desktop and tablet views. Component testing with accessibility validation. Build verification and PWA manifest testing.</standards>
+    <locations>tests/e2e/ directory with .spec.ts files for critical user journeys. Story-level acceptance criteria mapping to test scenarios.</locations>
+    <ideas>
+      <test id="AC1" idea="Verify Next.js 15 project structure and App Router functionality"/>
+      <test id="AC2" idea="Test all installed dependencies (Tailwind, Shadcn/UI, Lucide, Supabase) are properly configured"/>
+      <test id="AC3" idea="Validate ESLint+Prettier configuration and formatting consistency"/>
+      <test id="AC4" idea="Test PWA installation and service worker registration on mobile/tablet"/>
+      <test id="AC5" idea="Verify proper directory structure: app/(auth), app/(dashboard), components/, lib/, types/"/>
+    </ideas>
+  </tests>
+</story-context>
