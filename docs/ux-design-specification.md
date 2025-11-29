@@ -77,9 +77,26 @@ Este enfoque equilibra la densidad de información necesaria para los gestores c
 
 ### 5.1 Critical User Paths
 
+#### Flujo 0: Autenticación y Registro (Universal) - "Acceso Seguro y Rápido"
+1.  **Login Inicial:** Usuario introduce email/usuario y contraseña.
+2.  **Validación:** Sistema valida credenciales contra Supabase Auth.
+3.  **Redirección:** Tras un login exitoso, el usuario es redirigido a la pantalla de inicio específica de su rol:
+    - Operarios → Pantalla de Inicio Móvil (Reporte de Averías)
+    - Técnicos → Listado de Órdenes de Trabajo Asignadas ("Mis Órdenes")
+    - Supervisores → Listado General de Órdenes de Trabajo
+    - Administradores → KPI Dashboard Principal
+4.  **Sesión Persistente:** Login remembered para accesos futuros (TWA/tablets).
+
+#### Flujo 0.1: Registro de Nuevo Usuario (Invitación)
+1.  **Invitación:** Admin envía email con código de invitación.
+2.  **Verificación:** Usuario introduce código y email.
+3.  **First Login:** Sistema valida invitación y requiere cambio de contraseña.
+4.  **Perfil Inicial:** Usuario selecciona rol base (Operario/Técnico) y capacidad técnica (N1-N5).
+5.  **Welcome:** Dashboard personalizado según rol seleccionado.
+
 #### Flujo A: Reporte de Avería (Operario) - "La Regla de los 5 Toques"
 *(Simplificado para MVP: Sin Fotos ni QR)*
-1.  **Inicio:** Abre la app (Login persistente).
+1.  **Inicio:** Abre la app (Login persistente - solo primera vez).
 2.  **Selección:** Busca y selecciona "Línea/Máquina" de la lista o árbol de activos.
 3.  **Reporte:** Selecciona síntoma predefinido o escribe breve descripción.
 4.  **Acción:** Pulsa "Enviar Notificación (NL)".
@@ -161,7 +178,7 @@ Este enfoque equilibra la densidad de información necesaria para los gestores c
 
 ### 5.2 View Structure & Sitemap (Inventario de Pantallas)
 
-Para garantizar cobertura total de los FRs, la aplicación contará con las siguientes vistas:
+Para garantizar cobertura total de los FRs, la aplicación contará con las siguientes vistas. Las pantallas de inicio primarias para cada rol se han definido para optimizar el flujo de trabajo: **Operarios** irán a la pantalla móvil de Reporte de Averías, **Técnicos** a "Mis Órdenes", **Supervisores** al "Listado General de Órdenes de Trabajo", y **Administradores** al "KPI Dashboard Principal".
 
 **1. Auth & Public**
 *   `Login Screen`: Acceso simple email/password.

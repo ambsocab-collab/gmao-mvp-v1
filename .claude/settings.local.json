@@ -16,7 +16,10 @@
       "Bash(npm run lint:*)",
       "Bash(tree:*)",
       "Bash(ls:*)",
-      "Bash(npm outdated:*)"
+      "Bash(npm outdated:*)",
+      "Bash(npm run test:e2e:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm test:*)"
     ],
     "deny": [],
     "ask": []

@@ -13,6 +13,8 @@ This document provides the complete epic and story breakdown for gmao-mvp-v1, de
 
 **Living Document Notice:** This is the initial version. It will be updated after UX Design and Architecture workflows add interaction and technical details to stories.
 
+**IMPORTANT UI IMPLEMENTATION GUIDANCE:** For the UI implementation of each story, strictly adhere to the visual designs and wireframes detailed in the [UI Wireframes document](./ui-wireframes.md). This ensures consistency and alignment with the established user experience and visual design principles across the entire application.
+
 ## Epics Proposed
 
 Here is the proposed epic structure, based on natural groupings of functional requirements, prioritizing user value delivery.

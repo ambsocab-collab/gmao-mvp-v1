@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
   experimental: {
     ppr: false, // Disable PPR for PWA compatibility
   },
+  turbopack: {}, // Enable Turbopack configuration
 };
 
 export default withPWA(nextConfig);
