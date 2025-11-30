@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { QueryProvider } from "@/providers/query-provider";
 import { AuthProvider } from "@/providers/auth-provider";
+import { AuthLoading } from "@/components/auth-loading";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -60,10 +61,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <QueryProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
-        </QueryProvider>
+            <AuthProvider>
+              <AuthLoading>
+                {children}
+              </AuthLoading>
+            </AuthProvider>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>

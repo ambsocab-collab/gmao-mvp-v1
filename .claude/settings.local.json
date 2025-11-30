@@ -27,7 +27,15 @@
       "Bash(npm i:*)",
       "Bash(mkdir:*)",
       "Bash(echo:*)",
-      "Bash(dir C:Usersambsodevgmao-mvp-v1)"
+      "Bash(dir C:Usersambsodevgmao-mvp-v1)",
+      "Bash(npm run test:*)",
+      "Bash(supabase db reset:*)",
+      "Bash(supabase migration list:*)",
+      "Bash(supabase status:*)",
+      "Bash(curl:*)",
+      "Bash(node:*)",
+      "Bash(del:*)",
+      "Bash(supabase db push:*)"
     ],
     "deny": [],
     "ask": []

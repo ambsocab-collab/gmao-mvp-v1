@@ -1,0 +1,51 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e6]:
+      - heading "GMAO MVP" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Sistema de Mantenimiento Industrial
+      - generic [ref=e9]: Iniciar Sesión
+    - generic [ref=e10]:
+      - alert [ref=e11]:
+        - generic [ref=e12]: Email o contraseña incorrectos
+      - alert [ref=e13]:
+        - generic [ref=e14]: "Error de autenticación: Invalid login credentials"
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - text: Email
+          - textbox "Email" [ref=e17]:
+            - /placeholder: tu@email.com
+            - text: Nella_Kerluke88@gmail.com
+        - generic [ref=e18]:
+          - text: Contraseña
+          - generic [ref=e19]:
+            - textbox "Contraseña" [ref=e20]:
+              - /placeholder: Tu contraseña
+              - text: pelacumosine
+            - button [ref=e21] [cursor=pointer]:
+              - img [ref=e22]
+        - button "Iniciar Sesión" [ref=e25] [cursor=pointer]
+      - paragraph [ref=e27]:
+        - text: ¿Olvidaste tu contraseña?
+        - button "Recuperar contraseña" [disabled] [ref=e28]
+  - generic [ref=e29]:
+    - img [ref=e31]
+    - button "Open Tanstack query devtools" [ref=e80] [cursor=pointer]:
+      - img [ref=e81]
+  - generic [ref=e134] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e135]:
+      - img [ref=e136]
+    - generic [ref=e140]:
+      - button "Open issues overlay" [ref=e141]:
+        - generic [ref=e142]:
+          - generic [ref=e143]: "2"
+          - generic [ref=e144]: "3"
+        - generic [ref=e145]:
+          - text: Issue
+          - generic [ref=e146]: s
+      - button "Collapse issues badge" [ref=e147]:
+        - img [ref=e148]
+  - alert [ref=e150]
+```

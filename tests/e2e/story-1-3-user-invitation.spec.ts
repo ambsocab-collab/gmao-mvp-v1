@@ -149,7 +149,7 @@ test.describe('Story 1.3 - User Registration & Invitation (Admin)', () => {
       const invitationToken = faker.string.uuid();
       const newUser = NEW_USERS[1];
 
-      await page.goto(`/auth/invite?token=${invitationToken}&email=${encodeURIComponent(newUser.email)}`);
+      await page.goto(`/invite?token=${invitationToken}&email=${encodeURIComponent(newUser.email)}`);
 
       // Mock token validation API
       await page.route('**/api/invitations/validate', (route) =>
@@ -201,7 +201,7 @@ test.describe('Story 1.3 - User Registration & Invitation (Admin)', () => {
     test('should enforce password requirements during registration', async ({ page }) => {
       // GIVEN: User is on registration page from invitation link
       const invitationToken = faker.string.uuid();
-      await page.goto(`/auth/invite?token=${invitationToken}&email=test@example.com`);
+      await page.goto(`/invite?token=${invitationToken}&email=test@example.com`);
 
       // Mock token validation
       await page.route('**/api/invitations/validate', (route) =>
@@ -489,7 +489,7 @@ test.describe('Story 1.3 - User Registration & Invitation (Admin)', () => {
       const newUser = NEW_USERS[2]; // Supervisor role
       const newPassword = faker.internet.password({ length: 12, memorable: true });
 
-      await page.goto(`/auth/invite?token=${invitationToken}&email=${encodeURIComponent(newUser.email)}`);
+      await page.goto(`/invite?token=${invitationToken}&email=${encodeURIComponent(newUser.email)}`);
 
       // Mock token validation with role
       await page.route('**/api/invitations/validate', (route) =>

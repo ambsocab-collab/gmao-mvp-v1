@@ -7,13 +7,33 @@ import { Suspense } from "react";
 
 async function UserDetails() {
   const supabase = await createClient();
-  const { data, error } = await supabase.auth.getClaims();
 
-  if (error || !data?.claims) {
+  try {
+    // Primero verificar si hay una sesión activa
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+    if (sessionError || !session) {
+      redirect("/auth/login");
+    }
+
+    // Si hay sesión, obtener los claims
+    const { data, error } = await supabase.auth.getClaims();
+
+    if (error || !data?.claims) {
+      // Si hay error al obtener claims, mostrar información básica del usuario
+      return JSON.stringify({
+        user_id: session.user.id,
+        email: session.user.email,
+        created_at: session.user.created_at,
+        last_sign_in_at: session.user.last_sign_in_at
+      }, null, 2);
+    }
+
+    return JSON.stringify(data.claims, null, 2);
+  } catch (error) {
+    console.error("Error in UserDetails:", error);
     redirect("/auth/login");
   }
-
-  return JSON.stringify(data.claims, null, 2);
 }
 
 export default function ProtectedPage() {

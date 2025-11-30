@@ -1,0 +1,50 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - heading "GMAO MVP" [level=1] [ref=e7]
+      - heading "Completa tu Registro" [level=2] [ref=e8]
+      - paragraph [ref=e9]: Has sido invitado a unirte al sistema de Gestión de Mantenimiento
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]: Configurar Contraseña
+        - generic [ref=e14]: Establece tu contraseña para completar el registro de tu cuenta
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - text: Contraseña
+          - textbox "Contraseña" [active] [ref=e18]:
+            - /placeholder: ••••••••
+            - text: yacubobodize
+          - paragraph [ref=e19]: La contraseña debe incluir mayúsculas, minúsculas y números
+        - generic [ref=e20]:
+          - text: Confirmar Contraseña
+          - textbox "Confirmar Contraseña" [ref=e21]:
+            - /placeholder: ••••••••
+            - text: yacubobodize
+        - generic [ref=e22]:
+          - heading "Requisitos de contraseña:" [level=4] [ref=e23]
+          - list [ref=e24]:
+            - listitem [ref=e25]: • Mínimo 8 caracteres
+            - listitem [ref=e26]: • Al menos una letra mayúscula
+            - listitem [ref=e27]: • Al menos una letra minúscula
+            - listitem [ref=e28]: • Al menos un número
+        - button "Configurar Contraseña" [ref=e29] [cursor=pointer]
+    - paragraph [ref=e31]:
+      - text: ¿Ya tienes una cuenta?
+      - link "Inicia sesión aquí" [ref=e32] [cursor=pointer]:
+        - /url: /login
+  - generic [ref=e33]:
+    - img [ref=e35]
+    - button "Open Tanstack query devtools" [ref=e84] [cursor=pointer]:
+      - img [ref=e85]
+  - button "Open Next.js Dev Tools" [ref=e139] [cursor=pointer]:
+    - generic [ref=e142]:
+      - text: Compiling
+      - generic [ref=e143]:
+        - generic [ref=e144]: .
+        - generic [ref=e145]: .
+        - generic [ref=e146]: .
+  - alert [ref=e147]
+```

@@ -1,0 +1,45 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e6]:
+      - heading "GMAO MVP" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Sistema de Mantenimiento Industrial
+      - generic [ref=e9]: Iniciar Sesión
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - text: Email
+          - textbox "Email" [ref=e13]:
+            - /placeholder: tu@email.com
+        - generic [ref=e14]:
+          - text: Contraseña
+          - generic [ref=e15]:
+            - textbox "Contraseña" [ref=e16]:
+              - /placeholder: Tu contraseña
+            - button [ref=e17] [cursor=pointer]:
+              - img [ref=e18]
+        - button "Iniciar Sesión" [ref=e21] [cursor=pointer]
+      - paragraph [ref=e23]:
+        - text: ¿Olvidaste tu contraseña?
+        - button "Recuperar contraseña" [disabled] [ref=e24]
+  - generic [ref=e25]:
+    - img [ref=e27]
+    - button "Open Tanstack query devtools" [ref=e76] [cursor=pointer]:
+      - img [ref=e77]
+  - generic [ref=e130] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e131]:
+      - img [ref=e132]
+    - generic [ref=e136]:
+      - button "Open issues overlay" [ref=e137]:
+        - generic [ref=e138]:
+          - generic [ref=e139]: "1"
+          - generic [ref=e140]: "2"
+        - generic [ref=e141]:
+          - text: Issue
+          - generic [ref=e142]: s
+      - button "Collapse issues badge" [ref=e143]:
+        - img [ref=e144]
+  - alert [ref=e146]
+```

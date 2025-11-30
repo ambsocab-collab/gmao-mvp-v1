@@ -106,8 +106,8 @@ export const createAcceptedInvitation = (overrides: Partial<Invitation> = {}): I
 };
 
 export const createExpiredInvitation = (overrides: Partial<Invitation> = {}): Invitation => {
-  const createdAt = faker.date.past({ days: 10 });
-  const expiresAt = faker.date.past({ days: 3 });
+  const createdAt = faker.date.past({ years: 0.03 }); // ~10 days
+  const expiresAt = faker.date.past({ years: 0.01 }); // ~3 days
 
   return createInvitation({
     status: 'expired',
@@ -296,10 +296,4 @@ export default {
   createAC2TestData,
   createAC4TestData,
   createRoleAssignmentTestData,
-
-  // Types
-  type User,
-  type Invitation,
-  type InvitationStatus,
-  type UserRole,
 };
