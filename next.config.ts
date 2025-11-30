@@ -28,7 +28,10 @@ const nextConfig: NextConfig = {
   experimental: {
     ppr: false, // Disable PPR for PWA compatibility
   },
-  turbopack: {}, // Enable Turbopack configuration
+  turbopack: {
+    root: __dirname,
+  }, // Enable Turbopack configuration with explicit root
+  allowedDevOrigins: ["192.168.18.26"], // Allow cross-origin requests from local network
 };
 
 export default withPWA(nextConfig);

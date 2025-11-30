@@ -1,0 +1,258 @@
+<story-context id=".bmad/bmm/workflows/4-implementation/story-context/1-3-user-registration-invitation-admin" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>3</storyId>
+    <title>User Registration & Invitation (Admin)</title>
+    <status>ready-for-dev</status>
+    <generatedAt>2025-11-30</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/1-3-user-registration-invitation-admin.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>administrator</asA>
+    <iWant>to invite new users via email and manage their initial registration</iWant>
+    <soThat>I can onboard new team members securely</soThat>
+    <tasks>- [ ] Implement admin invitation interface (AC: 3, 5)
+  - [ ] Create `/app/(dashboard)/admin/users/invite` route
+  - [ ] Build invitation form with email input and role selector
+  - [ ] Use industrial design patterns from Story 1.2
+  - [ ] Add form validation with React Hook Form + Zod
+
+- [ ] Integrate Supabase Auth invitation API (AC: 1, 2)
+  - [ ] Implement `useUserInvitation` hook with TanStack Query
+  - [ ] Connect to Supabase `admin.inviteUserByEmail()` method
+  - [ ] Handle invitation email sending and error states
+  - [ ] Test email delivery and link functionality
+
+- [ ] Create invitation status tracking system (AC: 4)
+  - [ ] Extend database schema to track invitation status
+  - [ ] Build invitation management panel interface
+  - [ ] Implement invitation resend functionality
+  - [ ] Add status filtering and search capabilities
+
+- [ ] Implement user registration flow completion (AC: 2)
+  - [ ] Create `/auth/invite` route for email link handling
+  - [ ] Build password setup form with validation
+  - [ ] Connect to Supabase Auth `updateUser()` method
+  - [ ] Handle first-time login and password change enforcement
+
+- [ ] Add security and validation measures (AC: 1, 2, 5)
+  - [ ] Implement email format validation and domain restrictions
+  - [ ] Add rate limiting for invitation requests
+  - [ ] Secure role assignment with admin-only permissions
+  - [ ] Create audit logging for invitation activities</tasks>
+  </story>
+
+  <acceptanceCriteria>[AC: Admin User Invitation] Given I am an administrator, When I enter a new user's email in the admin panel, Then an invitation email is sent via Supabase Auth (FR3). And the invited user receives an email with a link to set their password.
+
+[AC: User Registration Flow] When the invited user sets their password, Then their account is activated, and they can log in. And the system enforces first password change if required.
+
+[AC: Admin Interface] Given I have admin privileges, When I access the user invitation panel, Then I can see a form to invite new users with email and role assignment. And the interface follows industrial UI patterns with large touch targets.
+
+[AC: Invitation Status Tracking] Given I have sent invitations, When I view the invitation management panel, Then I can see the status of pending invitations (sent, accepted, expired). And I can resend invitations for expired links.
+
+[AC: Role Assignment] Given I am inviting a new user, When I select their initial role (Operator, Technician, Supervisor, Admin), Then this role is assigned to their profile upon successful registration. And the role assignment follows the RBAC patterns established in Story 1.2.</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <path>docs/prd.md</path>
+      <title>GMAO - Product Requirements Document</title>
+      <section>Functional Requirements - User Account & Access</section>
+      <snippet>FR3: Los administradores pueden invitar usuarios por email; el sistema gestiona el flujo de registro y primer cambio de contraseña obligatorio.</snippet>
+    </docs>
+    <docs>
+      <path>docs/architecture.md</path>
+      <title>Architecture Decision Document - GMAO MVP v1</title>
+      <section>Security & Permissions (RBAC)</section>
+      <snippet>Pattern: Database-Level Security (RLS). Implementation: auth.users (Supabase managed) handles identity. public.profiles table links to auth.users via id. public.profiles contains role (enum: 'operator', 'technician', 'supervisor', 'admin').</snippet>
+    </docs>
+    <docs>
+      <path>docs/architecture.md</path>
+      <title>Architecture Decision Document - GMAO MVP v1</title>
+      <section>Project Structure (Source Tree)</section>
+      <snippet>app/(dashboard)/ - Protected app routes including layout.tsx, page.tsx, assets/, orders/, canvas/, inventory/ for dashboard functionality.</snippet>
+    </docs>
+    <docs>
+      <path>docs/epics.md</path>
+      <title>gmao-mvp-v1 - Epic Breakdown</title>
+      <section>Epic 1: Foundation & User Management</section>
+      <snippet>Story 1.3: User Registration & Invitation (Admin) - As an administrator, I want to invite new users via email and manage their initial registration, so that I can onboard new team members securely.</snippet>
+    </docs>
+    <docs>
+      <path>docs/test-design-epic-1.md</path>
+      <title>Test Design: Epic 1 - Foundation & User Management</title>
+      <section>Risk Assessment - Security</section>
+      <snippet>R-001: Autenticación comprometida - Implementar Supabase Auth con políticas RLS estrictas. R-002: Gestión de roles incorrecta - Validación de roles en middleware y RLS con pruebas exhaustivas.</snippet>
+    </docs>
+    <docs>
+      <path>docs/sprint-artifacts/1-2-user-authentication-login-logout.md</path>
+      <title>Story 1.2: User Authentication (Login/Logout)</title>
+      <section>Learnings from Previous Story</section>
+      <snippet>Authentication Foundation: Supabase Auth fully configured with TanStack Query integration. Industrial UI Patterns: Large buttons (56px), high contrast design, and tablet-optimized layouts established.</snippet>
+    </docs>
+    <docs>
+      <path>docs/sprint-artifacts/1-3-user-registration-invitation-admin.md</path>
+      <title>Story 1.3: User Registration & Invitation (Admin)</title>
+      <section>Database Schema Extensions</section>
+      <snippet>ALTER TABLE public.profiles ADD COLUMN invitation_status invitation_status DEFAULT 'pending', ADD COLUMN invited_by UUID REFERENCES public.profiles(id), ADD COLUMN invited_at TIMESTAMP WITH TIME ZONE;</snippet>
+    </docs>
+    <docs>
+      <path>docs/sprint-artifacts/1-3-user-registration-invitation-admin.md</path>
+      <title>Story 1.3: User Registration & Invitation (Admin)</title>
+      <section>Key Services to Reuse</section>
+      <snippet>lib/hooks/use-auth.ts - Auth patterns can be adapted for invitation flows. lib/supabase/ - Already configured Supabase client with admin capabilities. components/login-form.tsx - Form patterns can be adapted for invitation forms.</snippet>
+    </docs>
+    <code>
+      <path>lib/hooks/use-auth.ts</path>
+      <kind>hook</kind>
+      <symbol>useAuth</symbol>
+      <lines>1-50</lines>
+      <reason>Existing authentication patterns with TanStack Query integration that can be adapted for invitation flows</reason>
+    </code>
+    <code>
+      <path>lib/supabase/client.ts</path>
+      <kind>service</kind>
+      <symbol>supabase</symbol>
+      <lines>1-30</lines>
+      <reason>SSR-ready Supabase client configuration for authentication operations</reason>
+    </code>
+    <code>
+      <path>components/ui/button.tsx</path>
+      <kind>component</kind>
+      <symbol>Button</symbol>
+      <lines>1-25</lines>
+      <reason>Shadcn/UI button component with industrial design patterns (56px height, high contrast)</reason>
+    </code>
+    <code>
+      <path>components/ui/input.tsx</path>
+      <kind>component</kind>
+      <symbol>Input</symbol>
+      <lines>1-20</lines>
+      <reason>Shadcn/UI input component for form fields with validation styling</reason>
+    </code>
+    <code>
+      <path>components/login-form.tsx</path>
+      <kind>component</kind>
+      <symbol>LoginForm</symbol>
+      <lines>1-80</lines>
+      <reason>Form validation patterns using React Hook Form + Zod that can be adapted for invitation forms</reason>
+    </code>
+    <code>
+      <path>app/(auth)/login/page.tsx</path>
+      <kind>page</kind>
+      <symbol>LoginPage</symbol>
+      <lines>1-40</lines>
+      <reason>Industrial UI patterns and route structure for admin interfaces</reason>
+    </code>
+    <code>
+      <path>supabase/migrations/20251129010000_epic1_user_management.sql</path>
+      <kind>database</kind>
+      <symbol>profiles table</symbol>
+      <lines>1-50</lines>
+      <reason>Existing user management schema with roles and RLS policies for invitation system extension</reason>
+    </code>
+    <code>
+      <path>types/index.ts</path>
+      <kind>types</kind>
+      <symbol>UserRole enum</symbol>
+      <lines>1-20</lines>
+      <reason>TypeScript role definitions for role assignment functionality</reason>
+    </code>
+    <code>
+      <path>app/(dashboard)/layout.tsx</path>
+      <kind>layout</kind>
+      <symbol>DashboardLayout</symbol>
+      <lines>1-30</lines>
+      <reason>Protected dashboard structure for admin routes integration</reason>
+    </code>
+    <code>
+      <path>lib/utils.ts</path>
+      <kind>utility</kind>
+      <symbol>cn function</symbol>
+      <lines>1-15</lines>
+      <reason>Utility functions for form validation and className handling</reason>
+    </code>
+    <dependencies>
+      <ecosystem>
+        <name>Node.js / Next.js</name>
+        <packages>
+          <package name="next" version="15" range="^15.0.0" />
+          <package name="react" version="18" range="^18.0.0" />
+          <package name="@supabase/supabase-js" version="2" range="^2.0.0" />
+          <package name="@tanstack/react-query" version="5" range="^5.0.0" />
+          <package name="react-hook-form" version="7" range="^7.0.0" />
+          <package name="zod" version="3" range="^3.0.0" />
+          <package name="@hookform/resolvers" version="3" range="^3.0.0" />
+          <package name="lucide-react" version="0" range="^0.1.0" />
+          <package name="tailwindcss" version="3" range="^3.4.0" />
+        </packages>
+      </ecosystem>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    <constraint>Use established industrial UI patterns: large buttons (&gt;44px), high contrast design, tablet-optimized layouts from Story 1.2</constraint>
+    <constraint>Follow React Hook Form + Zod validation patterns for consistency with existing authentication system</constraint>
+    <constraint>Implement TanStack Query for server state management with proper error handling and optimistic updates</constraint>
+    <constraint>Use Row Level Security (RLS) policies for admin-only access control</constraint>
+    <constraint>Maintain TypeScript strict mode with named exports and no any types</constraint>
+    <constraint>Include data-testid attributes for E2E testing compatibility</constraint>
+    <constraint>Use Spanish error messages for administrative staff consistency</constraint>
+    <constraint>Follow kebab-case file naming and PascalCase component conventions</constraint>
+    <constraint>Leverage existing Shadcn/UI components before creating new ones</constraint>
+    <constraint>Implement audit logging for all invitation activities for security compliance</constraint>
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>Supabase Auth Admin API</name>
+      <kind>REST API</kind>
+      <signature>admin.inviteUserByEmail(email: string, options?: { data?: object, redirectTo?: string })</signature>
+      <path>lib/supabase/client.ts</path>
+    </interface>
+    <interface>
+      <name>User Invitation Hook</name>
+      <kind>React Hook</kind>
+      <signature>useUserInvitation() - returns { inviteUser, isLoading, error, reset }</signature>
+      <path>lib/hooks/use-user-invitation.ts (to be created)</path>
+    </interface>
+    <interface>
+      <name>Invitation Form Component</name>
+      <kind>React Component</kind>
+      <signature>UserInvitationForm({ onSuccess }: { onSuccess: () => void })</signature>
+      <path>components/user-invitation-form.tsx (to be created)</path>
+    </interface>
+    <interface>
+      <name>Database Schema Extension</name>
+      <kind>SQL Migration</kind>
+      <signature>ALTER TABLE public.profiles ADD COLUMN invitation_status invitation_status DEFAULT 'pending'</signature>
+      <path>supabase/migrations/ (new migration file)</path>
+    </interface>
+    <interface>
+      <name>Admin Route Protection</name>
+      <kind>Middleware</kind>
+      <signature>middleware() - role-based access control for admin routes</signature>
+      <path>middleware.ts (reference existing pattern)</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>Use Playwright for E2E testing following patterns from Story 1.2. Include data-testid attributes for component identification. Test invitation flow end-to-end including email delivery simulation. Implement role-based access control tests. Use Spanish error message validation. Follow P0 critical path testing for authentication security.</standards>
+    <locations>
+      <directory pattern="tests/e2e/">E2E tests for invitation flows</directory>
+      <directory pattern="tests/unit/">Unit tests for hooks and components</directory>
+      <directory pattern="tests/integration/">API integration tests</directory>
+      <directory pattern="**/*.test.tsx">Component test files colocated with components</directory>
+    </locations>
+    <ideas>
+      <test idea-id="AC-1" name="Admin User Invitation Flow">Test complete invitation flow from admin email entry to email delivery simulation using Supabase test environment</test>
+      <test idea-id="AC-2" name="User Registration Completion">Test invited user password setup, account activation, and first login enforcement</test>
+      <test idea-id="AC-3" name="Admin Interface Access Control">Test role-based access to invitation panel with different user roles (operator, technician, supervisor, admin)</test>
+      <test idea-id="AC-4" name="Invitation Status Tracking">Test invitation status updates (pending → accepted → expired) and resend functionality</test>
+      <test idea-id="AC-5" name="Role Assignment Validation">Test that selected roles are properly assigned upon registration and follow RBAC patterns from Story 1.2</test>
+      <test idea-id="SEC-1" name="Security Validation">Test email format validation, rate limiting, and audit logging for invitation activities</test>
+      <test idea-id="UI-1" name="Industrial UI Compliance">Test large button targets (&gt;44px), high contrast, and tablet optimization</test>
+    </ideas>
+  </tests>
+</story-context>

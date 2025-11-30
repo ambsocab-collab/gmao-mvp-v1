@@ -23,7 +23,11 @@
       "Bash(taskkill:*)",
       "Bash(npm run)",
       "Bash(tasklist:*)",
-      "Bash(findstr node)"
+      "Bash(findstr node)",
+      "Bash(npm i:*)",
+      "Bash(mkdir:*)",
+      "Bash(echo:*)",
+      "Bash(dir C:Usersambsodevgmao-mvp-v1)"
     ],
     "deny": [],
     "ask": []
