@@ -1,0 +1,117 @@
+<story-context id="{bmad_folder}/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>2</storyId>
+    <title>User Authentication (Login/Logout)</title>
+    <status>drafted</status>
+    <generatedAt>2025-11-30</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/1-2-user-authentication-login-logout.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>user</asA>
+    <iWant>to securely log in and out of the application using email and password</iWant>
+    <soThat>I can access my personalized features</soThat>
+    <tasks>- [ ] Implement Supabase Auth service and configuration (AC: 1, 3)
+  - [ ] Create auth hooks for sign in/out operations
+  - [ ] Configure Supabase client with auth persistence
+  - [ ] Set up auth state management with TanStack Query
+- [ ] Build login page UI component (AC: 1, 4, 5)
+  - [ ] Create `/app/(auth)/login/page.tsx` with form
+  - [ ] Implement form validation with React Hook Form + Zod
+  - [ ] Use industrial design (large buttons, high contrast)
+  - [ ] Add error display for auth failures
+- [ ] Implement authentication flow logic (AC: 1, 2, 3)
+  - [ ] Connect form to Supabase Auth signInWithPassword
+  - [ ] Handle successful auth redirects to dashboard
+  - [ ] Implement logout functionality with session cleanup
+  - [ ] Test session persistence across browser restarts
+- [ ] Add route protection middleware (AC: 3)
+  - [ ] Create Next.js middleware for protected routes
+  - [ ] Redirect unauthenticated users to login
+  - [ ] Handle auth state loading properly</tasks>
+  </story>
+
+  <acceptanceCriteria>1. [AC: Login Authentication] Given I am on the login screen, When I enter valid email and password, Then I am authenticated via Supabase Auth and redirected to the dashboard. And a persistent session is established (FR4).
+2. [AC: Logout Functionality] When I click "Logout", Then my session is terminated, and I am redirected to the login screen. And error messages are displayed for invalid credentials.
+3. [AC: Session Persistence] Authentication sessions persist across browser restarts and maintain user state for industrial tablet usage (NFR7).
+4. [AC: Error Handling] Invalid credentials and network errors display clear, user-friendly messages for industrial operators.
+5. [AC: Mobile Industrial UI] Login interface uses industrial design patterns with large buttons (>44px) and high contrast for glove use (NFR7).</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc path="docs/prd.md" title="Product Requirements Document" section="FR1-FR4 User Account & Access, NFR3-NFR7 Security & Platform" snippet="El GMAO es un sistema integral de gestión de mantenimiento diseñado para transformar completamente las operaciones de mantenimiento en fábricas industriales. FR4: La autenticación debe persistir (Supabase Auth) y ser segura, soportando sesiones largas para tablets de planta." />
+      <doc path="docs/architecture.md" title="Architecture Decision Document" section="Security & Permissions, Project Structure" snippet="Security & Permissions (RBAC): Database-Level Security (RLS). Auth: Supabase Auth (Email/Password + Magic Link). Online-First approach with persistent sessions for industrial tablet usage." />
+      <doc path="docs/epics.md" title="Epic Breakdown" section="Epic 1: Foundation & User Management" snippet="Story 1.2: User Authentication (Login/Logout) - As a user, I want to securely log in and out of the application using email and password, so that I can access my personalized features." />
+    </docs>
+    <code>
+      <artifact path="components/login-form.tsx" kind="component" symbol="LoginForm" lines="19-111" reason="Existing login form component that needs to be adapted for industrial design and proper routing" />
+      <artifact path="components/logout-button.tsx" kind="component" symbol="LogoutButton" lines="7-17" reason="Basic logout functionality already implemented, needs integration with proper session management" />
+      <artifact path="lib/supabase/client.ts" kind="service" symbol="createClient" lines="3-8" reason="Supabase client configuration for browser-side authentication operations" />
+      <artifact path="app/auth/login/page.tsx" kind="page" symbol="LoginPage" reason="Login page route structure already exists, needs enhancement for industrial UI" />
+      <artifact path="app/(dashboard)/layout.tsx" kind="layout" symbol="DashboardLayout" reason="Protected dashboard layout where authenticated users should be redirected" />
+    </code>
+    <dependencies>
+      <ecosystem name="frontend">
+        <package name="@supabase/ssr" version="latest" />
+        <package name="@supabase/supabase-js" version="^2.86.0" />
+        <package name="next" version="latest" />
+        <package name="react" version="^19.0.0" />
+        <package name="react-hook-form" version="^7.67.0" />
+        <package name="zod" version="^3.25.76" />
+        <package name="@tanstack/react-query" version="^5.90.11" />
+      </ecosystem>
+      <ecosystem name="ui">
+        <package name="@radix-ui/react-label" version="^2.1.6" />
+        <package name="@radix-ui/react-slot" version="^1.2.2" />
+        <package name="tailwindcss" version="^3.4.1" />
+        <package name="lucide-react" version="^0.511.0" />
+      </ecosystem>
+      <ecosystem name="testing">
+        <package name="playwright" version="^1.57.0" />
+        <package name="@playwright/test" version="^1.57.0" />
+      </ecosystem>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    <constraint id="architecture" severity="high">Use Next.js 15 App Router with proper route groups [Source: architecture.md#Project-Structure-Source-Tree]</constraint>
+    <constraint id="industrial-ui" severity="high">Industrial design with large buttons (&gt;44px) for glove usage [Source: PRD NFR7]</constraint>
+    <constraint id="high-contrast" severity="medium">High contrast design for visibility in industrial environments</constraint>
+    <constraint id="naming" severity="medium">Follow naming conventions: kebab-case files, PascalCase components [Source: architecture.md#Naming-Patterns]</constraint>
+    <constraint id="security" severity="critical">Supabase Auth configuration for secure email/password authentication [Source: tech-spec-epic-1.md#Authentication-Flow]</constraint>
+    <constraint id="session" severity="high">Session management with secure JWT tokens and refresh mechanism</constraint>
+    <constraint id="validation" severity="medium">Input validation with Zod schemas to prevent injection attacks</constraint>
+    <constraint id="mobile-first" severity="medium">Mobile-first responsive design optimized for tablets</constraint>
+    <constraint id="error-handling" severity="medium">Clear error messages for operators in potentially noisy/stressful situations</constraint>
+  </constraints>
+
+  <interfaces>
+    <interface name="Supabase Auth" kind="REST API" signature="signInWithPassword({ email: string, password: string })" path="lib/supabase/client.ts" />
+    <interface name="Supabase Auth Logout" kind="REST API" signature="signOut()" path="lib/supabase/client.ts" />
+    <interface name="React Hook Form" kind="library" signature="useForm({ resolver: zodResolver(schema) })" />
+    <interface name="Zod Validation" kind="library" signature="z.object({ email: z.string().email(), password: z.string().min(6) })" />
+    <interface name="Next.js Router" kind="framework" signature="useRouter().push('/dashboard')" path="next/navigation" />
+    <interface name="TanStack Query" kind="state-management" signature="useQuery({ queryKey: ['auth'], queryFn: authFunction })" />
+  </interfaces>
+
+  <tests>
+    <standards>Playwright E2E testing framework with priority-based test organization (P0 critical, P1 important, P2 optional). Tests use user-facing locators and data attributes. Fixtures pattern for test data management. Comprehensive authentication flow testing including security validations.</standards>
+    <locations>
+      <location pattern="tests/e2e/auth/*.spec.ts" description="End-to-end authentication tests" />
+      <location pattern="tests/helpers/auth-helper.ts" description="Authentication test utilities" />
+      <location pattern="tests/support/fixtures/factories/user-factory.ts" description="User test data generation" />
+      <location pattern="tests/e2e/**/p0*.spec.ts" description="P0 critical tests for core functionality" />
+    </locations>
+    <ideas>
+      <test idea="Login with valid credentials redirects to dashboard" acceptance_criteria="AC: Login Authentication" priority="P0" />
+      <test idea="Login with invalid credentials shows error message" acceptance_criteria="AC: Error Handling" priority="P0" />
+      <test idea="Logout terminates session and redirects to login" acceptance_criteria="AC: Logout Functionality" priority="P0" />
+      <test idea="Session persists across browser restarts" acceptance_criteria="AC: Session Persistence" priority="P0" />
+      <test idea="Industrial UI elements meet accessibility standards" acceptance_criteria="AC: Mobile Industrial UI" priority="P1" />
+      <test idea="Form validation prevents invalid submissions" acceptance_criteria="AC: Error Handling" priority="P1" />
+      <test idea="Session tokens are secure (httpOnly, secure)" acceptance_criteria="Security requirements" priority="P0" />
+    </ideas>
+  </tests>
+</story-context>

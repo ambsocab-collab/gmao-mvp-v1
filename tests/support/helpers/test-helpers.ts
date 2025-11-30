@@ -50,7 +50,7 @@ export class ProjectSetupHelpers {
     return await page.evaluate(() => {
       return !!(window.matchMedia('(display-mode: standalone)').matches ||
                window.matchMedia('(display-mode: minimal-ui)').matches ||
-               navigator.standalone);
+               (navigator as any).standalone);
     });
   }
 
