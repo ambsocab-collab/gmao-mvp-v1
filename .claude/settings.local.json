@@ -21,7 +21,9 @@
       "Bash(npm run dev:*)",
       "Bash(npm test:*)",
       "Bash(taskkill:*)",
-      "Bash(npm run)"
+      "Bash(npm run)",
+      "Bash(tasklist:*)",
+      "Bash(findstr node)"
     ],
     "deny": [],
     "ask": []
