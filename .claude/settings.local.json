@@ -20,7 +20,8 @@
       "Bash(npm run test:e2e:*)",
       "Bash(npm run dev:*)",
       "Bash(npm test:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(npm run)"
     ],
     "deny": [],
     "ask": []

@@ -6,7 +6,7 @@ const TEST_CREDENTIALS = {
 };
 
 test.describe("Session Persistence - P1 Important", () => {
-  test("should maintain authentication session across browser restarts", async ({ page, _context }) => {
+  test("should maintain authentication session across browser restarts", async ({ page, context }) => {
     // Mock de login exitoso
     await page.route("**/auth/v1/token", async (route) => {
       await route.fulfill({
@@ -45,9 +45,9 @@ test.describe("Session Persistence - P1 Important", () => {
 
     // 1. Iniciar sesión
     await page.goto("/login");
-    await page.fill('input[name="email"]', TEST_CREDENTIALS.email);
-    await page.fill('input[name="password"]', TEST_CREDENTIALS.password);
-    await page.click('button[type="submit"]');
+    await page.fill('[data-testid="email-input"]', TEST_CREDENTIALS.email);
+    await page.fill('[data-testid="password-input"]', TEST_CREDENTIALS.password);
+    await page.click('[data-testid="login-button"]');
 
     // Verificar que redirige al dashboard
     await expect(page).toHaveURL(/\/dashboard/);
@@ -157,9 +157,9 @@ test.describe("Session Persistence - P1 Important", () => {
 
     // 1. Iniciar sesión
     await page.goto("/login");
-    await page.fill('input[name="email"]', TEST_CREDENTIALS.email);
-    await page.fill('input[name="password"]', TEST_CREDENTIALS.password);
-    await page.click('button[type="submit"]');
+    await page.fill('[data-testid="email-input"]', TEST_CREDENTIALS.email);
+    await page.fill('[data-testid="password-input"]', TEST_CREDENTIALS.password);
+    await page.click('[data-testid="login-button"]');
 
     // 2. Verificar que está autenticado
     await expect(page).toHaveURL(/\/dashboard/);
@@ -283,9 +283,9 @@ test.describe("Session Persistence - P1 Important", () => {
 
     // 1. Iniciar sesión
     await page.goto("/login");
-    await page.fill('input[name="email"]', TEST_CREDENTIALS.email);
-    await page.fill('input[name="password"]', TEST_CREDENTIALS.password);
-    await page.click('button[type="submit"]');
+    await page.fill('[data-testid="email-input"]', TEST_CREDENTIALS.email);
+    await page.fill('[data-testid="password-input"]', TEST_CREDENTIALS.password);
+    await page.click('[data-testid="login-button"]');
 
     // 2. Navegar por diferentes rutas protegidas
     const protectedRoutes = [

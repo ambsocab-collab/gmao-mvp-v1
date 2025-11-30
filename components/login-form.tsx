@@ -68,6 +68,7 @@ export function LoginForm({
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  data-testid="email-input"
                 />
               </div>
               <div className="grid gap-2">
@@ -86,10 +87,11 @@ export function LoginForm({
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  data-testid="password-input"
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full" disabled={isLoading} data-testid="login-button">
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>

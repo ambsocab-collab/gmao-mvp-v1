@@ -75,11 +75,19 @@ function LoginPageContent() {
   };
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md bg-white border border-gray-200">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center text-gray-900">
-          Iniciar Sesión
-        </CardTitle>
+        <div className="text-center space-y-2">
+          <h1 className="text-3xl font-bold text-gray-900">
+            GMAO MVP
+          </h1>
+          <p className="text-lg text-gray-600">
+            Sistema de Mantenimiento Industrial
+          </p>
+          <CardTitle className="text-xl font-semibold text-center text-gray-800">
+            Iniciar Sesión
+          </CardTitle>
+        </div>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Mensaje de redirección */}
@@ -116,6 +124,7 @@ function LoginPageContent() {
               type="email"
               placeholder="tu@email.com"
               className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              data-testid="email-input"
               {...register("email")}
               disabled={isSigningIn}
             />
@@ -135,6 +144,7 @@ function LoginPageContent() {
                 type={showPassword ? "text" : "password"}
                 placeholder="Tu contraseña"
                 className="w-full px-4 py-3 pr-12 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                data-testid="password-input"
                 {...register("password")}
                 disabled={isSigningIn}
               />
@@ -161,7 +171,8 @@ function LoginPageContent() {
             type="submit"
             disabled={isSigningIn}
             className="w-full py-4 text-lg font-semibold text-white bg-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-            style={{ minHeight: "56px" }} // Industrial design: >44px
+            style={{ minHeight: "56px", backgroundColor: "rgb(37, 99, 235)" }} // Industrial design: >44px, blue-600 high contrast
+            data-testid="login-button"
           >
             {isSigningIn ? (
               <>

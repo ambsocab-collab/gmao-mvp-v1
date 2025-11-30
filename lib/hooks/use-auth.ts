@@ -78,22 +78,42 @@ export function useAuth() {
     },
     staleTime: 1000 * 60 * 5, // 5 minutos
     retry: 1,
+    // Session Persistence Verification:
+    // - Supabase automatically handles session persistence via secure cookies
+    // - Sessions persist across browser restarts for industrial tablet usage (NFR7)
+    // - JWT tokens are refreshed automatically by Supabase client
+    // - Auth state changes are monitored by AuthProvider in providers/auth-provider.tsx
+    // - Session validation occurs on initial page load via this query
   });
 
   // Mutation para login
   const signInMutation = useMutation({
     mutationFn: async ({ email, password }: SignInData) => {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      // Add timeout configuration for auth requests (30 seconds)
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Timeout de conexión')), 30000);
+      });
+
+      const authPromise = supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error) {
-        console.error("Sign in error:", error);
+      try {
+        const result = await Promise.race([authPromise, timeoutPromise]) as { data: any; error: any };
+
+        if (result.error) {
+          console.error("Sign in error:", result.error);
+          throw result.error;
+        }
+
+        return result.data;
+      } catch (error: unknown) {
+        if (error instanceof Error && error.message === 'Timeout de conexión') {
+          throw new Error('La conexión está tardando demasiado. Verifica tu red e intenta nuevamente.');
+        }
         throw error;
       }
-
-      return data;
     },
     onSuccess: () => {
       // Invalidar la query del usuario para que se refresque
@@ -109,10 +129,26 @@ export function useAuth() {
   // Mutation para logout
   const signOutMutation = useMutation({
     mutationFn: async () => {
-      const { error } = await supabase.auth.signOut();
+      // Add timeout configuration for auth requests (15 seconds for logout)
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Timeout de conexión')), 15000);
+      });
 
-      if (error) {
-        console.error("Sign out error:", error);
+      const authPromise = supabase.auth.signOut();
+
+      try {
+        const result = await Promise.race([authPromise, timeoutPromise]) as { error: any };
+
+        if (result.error) {
+          console.error("Sign out error:", result.error);
+          throw result.error;
+        }
+
+        return { success: true };
+      } catch (error: unknown) {
+        if (error instanceof Error && error.message === 'Timeout de conexión') {
+          throw new Error('La conexión está tardando demasiado. Verifica tu red e intenta nuevamente.');
+        }
         throw error;
       }
     },
